@@ -1,0 +1,516 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentUpdate version="1">
+	<!--Content definitions for group 'initial'-->
+	<Group name="initial">
+		<Table name="XMLINST">
+			<Where><![CDATA[ idx in (select latest from xmlvcs) ]]></Where>
+		</Table>
+		<Table name="XMLVCS">
+			<Where><![CDATA[ latest in (select idx from xmlinst) ]]></Where>
+		</Table>
+		<Table name="INITIAL" />
+		<Table name="PFLGPERS">
+			<Where><![CDATA[ pflegepersonal = 1 ]]></Where>
+		</Table>
+		<Table name="STATION">
+			<Where><![CDATA[ station < 0 ]]></Where>
+		</Table>
+		<Table name="GR_PERS_STAT">
+			<Where><![CDATA[ ID = -1 ]]></Where>
+		</Table>
+	</Group>
+	<!--Content definitions for group 'basics'-->
+	<Group name="basics">
+		<Table name="AUFGABEN_TEXTE">
+			<Order>GRUPPE,WERT</Order>
+		</Table>
+		<Table name="DIAGNOSE">
+			<Order>DIAGNOSE_ID</Order>
+		</Table>
+		<Table name="DIAGN_P_M">
+			<Order>diagnose_id,PROBLEM_id,MASSNAHME_ID,dlgteil_id</Order>
+		</Table>
+		<Table name="DOKUMENTATION_ART">
+			<Order>ID</Order>
+		</Table>
+		<Table name="DYNBAUM">
+			<Order>DYB_ID</Order>
+		</Table>
+		<Table name="DYN_V_K">
+			<Order>DYB_ID,DYB_KIND,DYN_REIHNF</Order>
+		</Table>
+		<Table name="ENP_CLUSTER">
+			<Order>CLUSTER_ID</Order>
+		</Table>
+		<Table name="ENP_PKMS_DLGKURZ">
+			<Order>pkms_id,dlgkurz_id,enp_id,pkms_type,valid_for_year</Order>
+		</Table>
+		<Table name="ENP_PKMS_KENNZEICHEN">
+			<Order>ENP_ID, PKMS_ID, KENN_ID, VALID_FOR_YEAR, OPT_NR, OPT_GRP_NR</Order>
+		</Table>
+		<Table name="ENP_PKMS_URSACHEN">
+			<Order>ENP_ID, PKMS_ID, URS_ID, VALID_FOR_YEAR, OPT_NR, OPT_GRP_NR</Order>
+		</Table>
+		<Table name="ENP_REL_PKMSDIA">
+			<Order>ENP_ID, PKMS_ID, KEN_OPT, KEN_MIN, URS_OPT, URS_MIN, ZIELE_ID, TYPE_ID, VALID_FOR_YEAR, ENP_OPT_NR ,ENP_OPT_GRP_NR, ENP_OPT_MIN_SEL, dia_skalen, skalen_faktor</Order>
+		</Table>
+		<Table name="ENP_REL_PKMSINT">
+			<Order>enp_id,pkms_id,type_id,mass_min,mass_opt,pkms_type,enp_freq,valid_for_year</Order>
+		</Table>
+		<Table name="ERSETZE_IN">
+			<Order>ersatz_id</Order>
+		</Table>
+		<Table name="FELD_DEF">
+			<Order>feld_id</Order>
+		</Table>
+		<Table name="GRUPPE">
+			<Order>group_id</Order>
+		</Table>
+		<Table name="GR_BER_BAUSTEIN">
+			<Order>id</Order>
+			<Where><![CDATA[ id < 0 ]]></Where>
+		</Table>
+		<Table name="GR_BER_THEMEN">
+			<Order>id</Order>
+			<Where><![CDATA[ id < 0 ]]></Where>
+		</Table>
+		<Table name="GR_BER_THEMEN_BAUST_V_K">
+			<Order>themen_id,baustein_id</Order>
+			<Where><![CDATA[ themen_id < 0  and BAUSTEIN_ID < 0 ]]></Where>
+		</Table>
+		<Table name="GR_BER_THEMEN_STAT_V_K">
+			<Order>themen_id,station_id</Order>
+			<Where><![CDATA[ themen_id < 0 and STATION_ID < 0  ]]></Where>
+		</Table>
+		<Table name="GR_THEMEN_BAUST_STAT_V_K">
+			<Order>themen_id,baustein_id,station_id</Order>
+			<Where><![CDATA[ themen_id < 0 and BAUSTEIN_ID < 0 and station_id < 0 ]]></Where>
+		</Table>
+		<Table name="GR_BER_FUNK">
+			<Order>funk_id,berart_id,station_id</Order>
+			<Where><![CDATA[ station_id = 0 ]]></Where>
+		</Table>
+		<Table name="GR_BERICHTART">
+			<Order>berartid</Order>
+			<Where><![CDATA[ Predefined = 1 ]]></Where>
+		</Table>
+		<Table name="GR_BERUFSGRUPPE">
+			<Order>id</Order>
+		</Table>
+		<Table name="GR_CODE_ATTR">
+			<Order>code,attr_id</Order>
+		</Table>
+		<Table name="GR_CODE_ATTR_AKTIV">
+			<Order>code,attr_id</Order>
+		</Table>
+		<Table name="GR_ICON">
+			<Order>id</Order>
+		</Table>
+		<Table name="GR_ICON_SORTING">
+			<Order>id,station</Order>
+			<Where><![CDATA[ station = 0 ]]></Where>
+		</Table>
+		<Table name="GR_LOK_BASIS">
+			<Order>lok_art_id,lok_nr</Order>
+		</Table>
+		<Table name="GR_LOK_BILDER">
+			<Order>lok_bild_id,lok_art_id,lok_geschlecht,lok_bildart,lok_type_id</Order>
+		</Table>
+		<Table name="GR_LOK_BILDSET">
+			<Order>lok_bild_id</Order>
+		</Table>
+		<Table name="GR_MEDI_IMPORT">
+			<Order>id</Order>
+		</Table>
+		<Table name="GR_MEDI_IMP_F_MAPING">
+			<Order>quell_bzg,form_id</Order>
+		</Table>
+		<Table name="GR_PFLPFADE">
+			<Order>PFAD_id</Order>
+		</Table>
+		<Table name="GR_REPORTS">
+			<Order>report_id</Order>
+			<ignore>is_Active</ignore>
+		</Table>
+		<Table name="GR_REPORTCOL">
+			<Order>id</Order>
+		</Table>
+		<Table name="SCALEN">
+			<Order>scalen_id</Order>
+		</Table>
+		<Table name="GR_SCAL_PROB">
+			<Order>scalen_id,group_id,str_id,prob_id</Order>
+		</Table>
+		<Table name="GR_SCALEN_SECTION">
+			<Order>scalen_id,section_id</Order>
+		</Table>
+		<Table name="GR_SCALEN_GROUP">
+			<Order>scalen_id,section_id,group_id,name</Order>
+		</Table>
+		<Table name="GR_SCALEN_ELEMENT">
+			<Order>scalen_id,group_id,str</Order>
+		</Table>
+		<Table name="GR_SYNC_TBL">
+			<Order>tbl_name</Order>
+		</Table>
+		<Table name="GR_SYSTEXT">
+			<Order>text_id</Order>
+		</Table>
+		<Table name="GR_SYSLISTTEXT">
+			<Order>id</Order>
+		</Table>
+		<Table name="GR_RO_NOC">
+			<Order>RO_ID,NOC_ID</Order>
+		</Table>
+		<Table name="GR_WUNDART_V_K">
+			<Order>wundart_id,kind_wundart_id</Order>
+		</Table>
+		<Table name="GR_WUNDATTR_V_K">
+			<Order>attr_id,beh_id</Order>
+		</Table>
+		<Table name="GR_WUNDBEH_V_K">
+			<Order>beh_id,wundart_id</Order>
+		</Table>
+		<Table name="GR_WUNDEINSCH_V_K">
+			<Order>einsch_id,wundart_id</Order>
+		</Table>
+		<Table name="ID" />
+		<Table name="ID_ART">
+			<Order>id_art_id</Order>
+		</Table>
+		<Table name="L3_CODE" />
+		<Table name="LABEL">
+			<Order>lid</Order>
+		</Table>
+		<Table name="LEP_VAR">
+			<Order>var_nr</Order>
+		</Table>
+		<Table name="LOGGING_CODES">
+			<Order>code</Order>
+		</Table>
+		<Table name="MEDI_APPLART">
+			<Order>id</Order>
+		</Table>
+		<Table name="MEDI_DAF_MED">
+			<Order>key_daf</Order>
+		</Table>
+		<Table name="APO_FORMCODE_MAPPING">
+			<Order>APO_KEY</Order>
+		</Table>
+		<Table name="MEDI_EINHEIT">
+			<Order>id</Order>
+		</Table>
+		<Table name="APO_UNITS_MAPPING">
+			<Order>APO_KEY</Order>
+		</Table>
+		<Table name="MEDI_FORM">
+			<Order>id</Order>
+		</Table>
+		<Table name="MEDI_FORM_APPLART">
+			<Order>formid,artid</Order>
+		</Table>
+		<Table name="OPT_PKMSENPINT">
+			<Order>opt_id,enp_id,pkms_id,valid_for_year</Order>
+		</Table>
+		<Table name="PLANINTERVENTION">
+			<Order>intervent_id</Order>
+			<Where><![CDATA[ intervent_id < 1000000 or intervent_id in (9000001, 9000002, 9000003) ]]></Where>
+		</Table>
+		<Table name="GR_INTERVATTR">
+			<Where><![CDATA[ version <> '4.19.4' or version is null]]></Where>
+		</Table>
+		<Table name="GR_PLINTER_ATTR">
+			<Where><![CDATA[ version <> '4.19.4' or version is null]]></Where>
+		</Table>
+		<Table name="GR_INTERVATTRAKTIV">
+			<Where><![CDATA[ version <> '4.19.4' or version is null]]></Where>
+		</Table>
+		<Table name="GR_INTERVATTR_V_K">
+			<Where><![CDATA[ version <> '4.19.4' or version is null]]></Where>
+		</Table>
+		<Table name="GR_PLANINTERVGROUP">
+			<Order>id</Order>
+		</Table>
+		<Table name="GR_PLANINTERVGROUP_V_K">
+			<Order>group_id,intervent_id</Order>
+		</Table>
+		<Table name="GR_PL_INT_WERT" />
+		<Table name="PERS_FUNKTIONS">
+			<Order>funk_id</Order>
+		</Table>
+		<Table name="QUALIFIKATIONS">
+			<Order>qual_id</Order>
+		</Table>
+		<Table name="RTS_KEYS">
+			<Order>rts_id</Order>
+		</Table>
+		<Table name="RTS_KEY_VAL">
+			<Order>rts_id,key_ident</Order>
+		</Table>
+		<Table name="RTS_KEY_ANAM">
+			<Order>RTS_ID, formtype</Order>
+			<Where><![CDATA[ Predefined = 1 ]]></Where>
+		</Table>
+		<Table name="SCAL_EINST">
+			<Order>einstuf_id,scalen_id,section_id</Order>
+		</Table>
+		<Table name="SCAL_LEP">
+			<Order>scalen_id,l_id</Order>
+		</Table>
+		<Table name="STATISTIC">
+			<Order>stat_id</Order>
+			<Where><![CDATA[ stat_id < 1000 ]]></Where>
+		</Table>
+		<Table name="TASKHIERARCHY">
+			<Order>id</Order>
+		</Table>
+		<Table name="UNTERMAS">
+			<Order>untermassnahme_id</Order>
+		</Table>
+		<Table name="USERS">
+			<Order>user_id</Order>
+		</Table>
+		<Table name="XPL_PROJ">
+			<Order>xpl_id</Order>
+			<Where><![CDATA[ xpl_id < 1000 ]]></Where>
+		</Table>
+		<Table name="XPL_TMPL">
+			<Order>xpl_id</Order>
+			<Where><![CDATA[ xpl_id < 1000 ]]></Where>
+		</Table>
+		<Table name="ZUGRECHART">
+			<Order>zureart_id</Order>
+		</Table>
+		<Table name="GR_MEDISORTINGGROUP">
+			<Order>id</Order>
+		</Table>
+		<Table name="GR_MEDISORTINGGROUP2MEDIFORM">
+			<Order>id</Order>
+		</Table>
+		<Table name="ZUGRECHTE">
+			<Order>zurecht_id</Order>
+		</Table>
+		<Table name="WEITERBUILDUNG">
+			<Order>id</Order>
+		</Table>
+		<Table name="SPEZIALISIERUNG">
+			<Order>id</Order>
+		</Table>
+		<Table name="ETIKETTEN_ARTEN">
+			<Order>etikett_id</Order>
+		</Table>
+		<Table name="GR_GUIFILTER">
+			<Order>id</Order>
+			<Where><![CDATA[ remarkfordelete = 1 ]]></Where>
+		</Table>
+		<Table name="GDB_DOCTYPE">
+			<Order>id</Order>
+			<Where><![CDATA[ predefinied = 1 ]]></Where>
+		</Table>
+		<Table name="GR_PERMISSIONGROUP">
+			<Order>id</Order>
+			<Where><![CDATA[ grouptype = 1 ]]></Where>
+		</Table>
+		<Table name="GR_PERM2PERMGROUP">
+			<Order>id</Order>
+			<Where><![CDATA[ permissiongroupid not in (select id from gr_PermissionGroup where grouptype in (2, 3)) ]]></Where>
+		</Table>
+		<Table name="ANAMNESE_NOCHECK">
+			<Order>RTS_DN</Order>
+		</Table>
+		<Table name="WS_SYNCINFO" />
+		<Table name="GR_TASKMANAGEMENTCATEGORY">
+			<Order>id</Order>
+		</Table>
+		<Table name="GR_TASKMANAGEMENT2INTERVENTION">
+			<Order>id</Order>
+		</Table>
+		<Table name="GR_TASKMANAGEMENTCOMMAND">
+			<Order>id</Order>
+		</Table>
+		<Table name="GR_TASKMANAGEMENT2COMMAND">
+			<Order>id</Order>
+		</Table>
+		<Table name="GR_INTERVENTIONGROUP">
+			<Order>id</Order>
+		</Table>
+		<Table name="GR_INTERVGROUP2INTERVENTION">
+			<Order>id</Order>
+		</Table>
+		<Table name="EXT_MAPPINGGROUP">
+			<Order>id</Order>
+			<Where><![CDATA[ Predefined  = 1 ]]></Where>
+		</Table>
+		<Table name="EXT_MAPPING">
+			<Order>id</Order>
+			<Where><![CDATA[ Predefined = 1 ]]></Where>
+		</Table>
+		<Table name="GR_SUBTIMELINETYPE">
+			<Order>id</Order>
+		</Table>
+		<Table name="GR_INTERVENTION2PROTOCOL">
+			<Order />
+		</Table>
+	</Group>
+	<!--Content definitions for group 'icd10'-->
+	<Group name="icd10">
+		<Table name="ICD10_GRUPPEN">
+			<Order>grvon,grbis,kapnr,vers</Order>
+		</Table>
+		<Table name="ICD10_KAPITEL">
+			<Order>kapnr,vers</Order>
+		</Table>
+		<Table name="ICD10_KODES">
+			<Order>code,vers</Order>
+		</Table>
+	</Group>
+	<!--Content definitions for group 'pkms'-->
+	<Group name="pkms">
+		<Table name="ENP_PKMS_FAKTOREN">
+			<Order>faktor, pkms_dia, enp_dia, kennz_id, urs_id, valid_for_year</Order>
+		</Table>
+		<Table name="PFLGMITB">
+			<Order>pflgmit_beridx</Order>
+		</Table>
+		<Table name="PKMS_WUND_INT_MAP" />
+		<Table name="PKMS_WUND_MAP" />
+		<Table name="PKMS_DIA_REL_FKT">
+			<Order>dia,fkt,pkms_type,valid_for_year</Order>
+		</Table>
+		<Table name="PKMS_DIAGNOSE">
+			<Order>id,valid_for_year</Order>
+		</Table>
+		<Table name="PKMS_ENP_DIA">
+			<Order>pkms_id,num_opt,min_sel,valid_for_year</Order>
+		</Table>
+		<Table name="PKMS_ENP_INT">
+			<Order>pkms_id,num_opt,min_sel,valid_for_year</Order>
+		</Table>
+		<Table name="PKMS_FAKTOR">
+			<Order>id,valid_for_year</Order>
+		</Table>
+		<Table name="PKMS_FILTER">
+			<Order>id,id_filter,valid_for_year</Order>
+		</Table>
+		<Table name="PKMS_FILTERTYP">
+			<Order>id_filter</Order>
+		</Table>
+		<Table name="PKMS_FKT_REL_INT">
+			<Order>fkt_id,int_id,type_id,valid_for_year</Order>
+		</Table>
+		<Table name="PKMS_INT_OPT">
+			<Order>id,valid_for_year</Order>
+		</Table>
+		<Table name="PKMS_INT_REL_SUB">
+			<Order>I,SUB,type_id,valid_for_year</Order>
+		</Table>
+		<Table name="PKMS_INTERVENTION">
+			<Order>id,valid_for_year</Order>
+		</Table>
+		<Table name="PKMS_NG">
+			<Order>id,type_id,valid_for_year</Order>
+		</Table>
+		<Table name="PKMS_NG_REL_DIA">
+			<Order>ng,dia,type_id,valid_for_year</Order>
+		</Table>
+		<Table name="PKMS_NG_REL_INT">
+			<Order>dia,I,type_id,valid_for_year</Order>
+		</Table>
+		<Table name="PKMS_OPS">
+			<Order>id,valid_for_year</Order>
+		</Table>
+		<Table name="PKMS_OPT_REL_INT">
+			<Order>opt,i,valid_for_year</Order>
+		</Table>
+		<Table name="PKMS_OPT_REL_SUB">
+			<Order>opt,sub,valid_for_year</Order>
+		</Table>
+		<Table name="PKMS_SUB_INT">
+			<Order>id,valid_for_year</Order>
+		</Table>
+		<Table name="PKMS_TAB">
+			<Order>id_art</Order>
+		</Table>
+		<Table name="PKMS_MOB_MAP">
+			<Order>pkms_id,intervent_id,valid_for_year</Order>
+		</Table>
+		<Table name="PKMS_INTERVENTIONTREE">
+			<Order>id</Order>
+		</Table>
+		<Table name="PKMS_CATEGORY2RULEEDITION">
+			<Order>id</Order>
+		</Table>
+		<Table name="PKMS_CAUSETREE">
+			<Order>id</Order>
+		</Table>
+	</Group>
+	<!--Content definitions for group 'ruleengine'-->
+	<Group name="ruleengine">
+		<Table name="RE_RULECATALOG">
+			<Order>id</Order>
+		</Table>
+		<Table name="RE_RULEEDITION">
+			<Order>id</Order>
+		</Table>
+		<Table name="RE_RULE">
+			<Order>id</Order>
+		</Table>
+		<Table name="RE_RULE2RULEEDITION">
+			<Order>id</Order>
+		</Table>
+		<Table name="WS_ENP2BODYAREA">
+			<Order>id</Order>
+		</Table>
+	</Group>
+	<!--Content definitions for group 'medi'-->
+	<Group name="medi">
+		<Table name="MEDI_INTERACTION">
+			<Order>key_int</Order>
+		</Table>
+		<Table name="MEDI_MEDIKAMENT">
+			<Order>id</Order>
+			<Where><![CDATA[ id < 1000000 ]]></Where>
+			<ignore>is_hlist,changedate,importdate, PreferredDisplayStyle</ignore>
+			<alternateDelete><![CDATA[ in_active = 1 ]]></alternateDelete>
+		</Table>
+		<Table name="MEDI_WIRK">
+			<Order>MEDI,WIRK,KOMPONENTENNR,ENTSPRICHTSTOFF,RANG</Order>
+			<Where><![CDATA[ wirk > -1000000 AND medi < 1000000]]></Where>
+			<alternateDelete><![CDATA[ in_use = 0 ]]></alternateDelete>
+			<beforeSql><![CDATA[ delete from medi_wirk where (ENTSPRICHTSTOFF is null or rang is null) and medi < 0 ]]></beforeSql>
+		</Table>
+		<Table name="WIRKSTOFF">
+			<Order>key_sto</Order>
+			<Where><![CDATA[ key_sto > -1000000 ]]></Where>
+			<ignore>delete_date</ignore>
+			<alternateDelete><![CDATA[ not_inuse = 1 ]]></alternateDelete>
+		</Table>
+		<Table name="WIRK_INTERACTION">
+			<Order>key_int,key_sto</Order>
+		</Table>
+		<Table name="MEDI_MEDICATION2KEYWORDS">
+			<Order>id</Order>
+		</Table>
+		<Table name="MEDI_MEDICATIONINFORMATION">
+			<Order>id</Order>
+		</Table>
+		<Table name="MEDI_MEDICATION2INFORMATION">
+			<Order>id</Order>
+		</Table>
+		<Table name="MEDI_KEYWORD">
+			<Order>id</Order>
+		</Table>
+		<Table name="MEDI_ATCCODES">
+			<Order>ATCCODE</Order>
+		</Table>
+		<Table name="MEDI_TRADINGUNIT">
+			<Order>PZN</Order>
+		</Table>
+		<Table name="MEDI_MEDICATIONPREPARATION">
+			<Order>id</Order>
+		</Table>
+		<Table name="MEDI_MEDICATION2PREPARATION">
+			<Order>id</Order>
+		</Table>
+	</Group>
+</ContentUpdate>
