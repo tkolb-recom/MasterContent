@@ -7,7 +7,7 @@ $global:dbServer    = "vidab-2"
 $global:dbUser      = "sa"
 $global:dbPassword  = "dev_sa"
 $global:dbName      = "MasterContent"
-$global:groupName   = "initial"
+$global:groupName   = "basics"
 
 function exportGroup {
     param(
