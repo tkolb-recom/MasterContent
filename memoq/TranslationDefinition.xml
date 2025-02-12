@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TranslationDefinition version="1">
+  <Table name="GR_BERUFSGRUPPE">
+    <Key name="ID" />
+    <OrderBy>ID</OrderBy>
+    <Column name="BEZEICHNUNG" type="plain" />
+  </Table>
+  <Table name="GR_INTERVENTIONGROUP">
+    <Key name="ID" />
+    <OrderBy>ID</OrderBy>
+    <Column name="GroupName" type="plain" />
+  </Table>
+  <Table name="GR_MEDISORTINGGROUP">
+    <Key name="ID" />
+    <OrderBy>ID</OrderBy>
+    <Column name="GroupName" type="plain" />
+  </Table>
+  <Table name="ERSETZE_STRINGS">
+    <Key name="ERSATZ_ID" />
+    <OrderBy>ERSATZ_ID</OrderBy>
+    <Column name="ERSATZ" type="plain" />
+    <Column name="ZUERSETZEN" type="plain" />
+  </Table>
+  <Table name="MICROSTD">
+    <Key name="MICRO_ID" />
+    <OrderBy>MICRO_ID</OrderBy>
+    <Column name="MICRO_DEF" type="plain" />
+  </Table>
+  <Table name="MASSNAHM">
+    <Key name="MASSNAHME_ID" />
+    <OrderBy>MASSNAHME_ID</OrderBy>
+    <Explain><![CDATA[HINWEISE]]></Explain>
+    <Column name="TEXT" type="rtf">
+      <Where><![CDATA[, prob_mas pm, ueb_prob up, ueb_them u where t.massnahme_id = pm.massnahme_id and pm.problem_id = up.problem_id and  up.aktiv = 1  and up.ueberschrift_id = u.ueb_id  and u.thema_id in (10000,10051,10052,10053,10054,10070,10055,10057,10058,10059,10060,10080,10061,10062,10063,10064,10056,10065,10066,10067,10069,10068,9998,9000)]]></Where>
+    </Column>
+    <Column name="HINWEISE" type="rtf">
+      <Where><![CDATA[, prob_mas pm, ueb_prob up, ueb_them u where t.hinweise is not null and show_hinweis = 1 and t.massnahme_id = pm.massnahme_id and pm.problem_id = up.problem_id and up.ueberschrift_id = u.ueb_id  and u.thema_id in (10000,10051,10052,10053,10054,10070,10055,10057,10058,10059,10060,10080,10061,10062,10063,10064,10056,10065,10066,10067,10069,10068,9998,9000)]]></Where>
+    </Column>
+  </Table>
+  <Table name="PROBLEM">
+    <Key name="PROBLEM_ID" />
+    <OrderBy>PROBLEM_ID</OrderBy>
+    <Explain><![CDATA[ueberschrift]]></Explain>
+    <Column name="PROB_DEF" type="plain">
+      <Where><![CDATA[, ueb_prob up, ueb_them u where t.problem_id = up.problem_id and  up.aktiv = 1  and prob_def is not null and up.ueberschrift_id = u.ueb_id  and u.thema_id in (10000,10051,10052,10053,10054,10070,10055,10057,10058,10059,10060,10080,10061,10062,10063,10064,10056,10065,10066,10067,10069,10068,9998,9000) and t.problem_id < 1000000]]></Where>
+    </Column>
+    <Column name="TEXT" type="rtf">
+      <Where><![CDATA[, ueb_prob up, ueb_them u where t.problem_id = up.problem_id and  up.aktiv = 1  and up.ueberschrift_id = u.ueb_id  and u.thema_id in (10000,10051,10052,10053,10054,10070,10055,10057,10058,10059,10060,10080,10061,10062,10063,10064,10056,10065,10066,10067,10069,10068,9998,9000) and t.problem_id < 1000000]]></Where>
+    </Column>
+    <Column name="UEBERSCHRIFT" type="obscure">
+      <Where><![CDATA[, ueb_prob up, ueb_them u where t.problem_id = up.problem_id and  up.aktiv = 1  and up.ueberschrift_id = u.ueb_id  and u.thema_id in (10000,10051,10052,10053,10054,10070,10055,10057,10058,10059,10060,10080,10061,10062,10063,10064,10056,10065,10066,10067,10069,10068,9998,9000)]]></Where>
+    </Column>
+  </Table>
+  <Table name="DLGTEIL_KURZ">
+    <Key name="DLGTEIL_ID" />
+    <OrderBy>DLGTEIL_ID</OrderBy>
+    <Explain><![CDATA[inhalt]]></Explain>
+    <Column name="EXPLANATION" type="plain">
+      <Where><![CDATA[ where t.dlgart_id in (1,2,3,4) and explanation is not null and exists (select 1 from dlg_kurz a where a.dlgteil_id = t.dlgteil_id)]]></Where>
+    </Column>
+    <Column name="INHALT" type="plain">
+      <Where><![CDATA[, dlg_kurz dk, massnahm m, prob_mas pm, ueb_prob up, ueb_them u where t.item_art <> 27 and t.dlgteil_id = dk.dlgteil_id  and  m.dlgbox_id = dk.dlg_id and m.massnahme_id = pm.massnahme_id and pm.problem_id = up.problem_id and  up.aktiv = 1  and up.ueberschrift_id = u.ueb_id  and u.thema_id in (10000,10051,10052,10053,10054,10070,10055,10057,10058,10059,10060,10080,10061,10062,10063,10064,10056,10065,10066,10067,10069,10068,9998,9000)]]></Where>
+    </Column>
+    <Column name="INHALT" type="plain">
+      <Where><![CDATA[, dlg_kurz dk, problem p, ueb_prob up, ueb_them u where t.dlgteil_id = dk.dlgteil_id  and  p.u_dlg_id = dk.dlg_id and p.problem_id = up.problem_id and  up.aktiv = 1  and up.ueberschrift_id = u.ueb_id  and u.thema_id in (10000,10051,10052,10053,10054,10070,10055,10057,10058,10059,10060,10080,10061,10062,10063,10064,10056,10065,10066,10067,10069,10068,9998,9000) and t.DLGTEIL_ID < 1000000 ]]></Where>
+    </Column>
+    <Column name="INHALT" type="plain">
+      <Where><![CDATA[, dlg_kurz dk, problem p, ueb_prob up, ueb_them u where t.dlgteil_id = dk.dlgteil_id  and  p.k_dlg_id = dk.dlg_id and p.problem_id = up.problem_id and  up.aktiv = 1  and up.ueberschrift_id = u.ueb_id  and u.thema_id in (10000,10051,10052,10053,10054,10070,10055,10057,10058,10059,10060,10080,10061,10062,10063,10064,10056,10065,10066,10067,10069,10068,9998,9000) and t.DLGTEIL_ID < 1000000 ]]></Where>
+    </Column>
+    <Column name="INHALT" type="plain">
+      <Where><![CDATA[, dlg_kurz dk, problem p, ueb_prob up, ueb_them u where t.dlgteil_id = dk.dlgteil_id  and  p.r_dlg_id = dk.dlg_id and p.problem_id = up.problem_id and  up.aktiv = 1  and up.ueberschrift_id = u.ueb_id  and u.thema_id in (10000,10051,10052,10053,10054,10070,10055,10057,10058,10059,10060,10080,10061,10062,10063,10064,10056,10065,10066,10067,10069,10068,9998,9000) and t.DLGTEIL_ID < 1000000 ]]></Where>
+    </Column>
+  </Table>
+  <Table name="ZIEL">
+    <Key name="ZIEL_ID" />
+    <OrderBy>ZIEL_ID</OrderBy>
+    <Column name="TEXT" type="rtf">
+      <Where><![CDATA[, mas_ziel mz, prob_mas pm, ueb_prob up, ueb_them u where t.ziel_id = mz.ziel_id and mz.massnahme_id = pm.massnahme_id and pm.problem_id = up.problem_id and  up.aktiv = 1  and up.ueberschrift_id = u.ueb_id  and u.thema_id in (10000,10051,10052,10053,10054,10070,10055,10057,10058,10059,10060,10080,10061,10062,10063,10064,10056,10065,10066,10067,10069,10068,9998,9000)]]></Where>
+    </Column>
+  </Table>
+  <Table name="UEBERSCH">
+    <Key name="UEBERSCHRIFT_ID" />
+    <OrderBy>UEBERSCHRIFT_ID</OrderBy>
+    <Column name="UEBERSCHRIFT" type="obscure" />
+  </Table>
+  <Table name="THEMEN">
+    <Key name="THEMA_ID" />
+    <OrderBy>THEMA_ID</OrderBy>
+    <Column name="THEMA" type="obscure">
+      <Where><![CDATA[where gebiet_id = 7 ]]></Where>
+    </Column>
+    <Column name="THEMA" type="obscure">
+      <Where><![CDATA[where gebiet_id = 5 and thema_id in (10000,10051,10052,10053,10054,10070,10055,10057,10058,10059,10060,10080,10061,10062,10063,10064,10056,10065,10066,10067,10069,10068,9998,9000)]]></Where>
+    </Column>
+    <Column name="THEMA" type="obscure" />
+    <Column name="THEMA" type="obscure">
+      <Where><![CDATA[where gebiet_id <> 0 and thema_id <> 9000 ]]></Where>
+    </Column>
+  </Table>
+  <Table name="GR_SYSTEXT">
+    <Key name="TEXT_ID" />
+    <OrderBy>TEXT_ID</OrderBy>
+    <Column name="TEXT" type="plain">
+      <Where><![CDATA[where USEDTYP = 1]]></Where>
+    </Column>
+    <Column name="LONGTEXT" type="plain">
+      <Where><![CDATA[where USEDTYP = 2]]></Where>
+    </Column>
+  </Table>
+  <Table name="MEDI_FORM">
+    <Key name="ID" />
+    <OrderBy>ID</OrderBy>
+    <Column name="BEZEICHNUNG" type="plain" />
+  </Table>
+  <Table name="MEDI_APPLART">
+    <Key name="ID" />
+    <OrderBy>ID</OrderBy>
+    <Column name="BEZEICHNUNG" type="plain" />
+  </Table>
+  <Table name="DYNBAUM">
+    <Key name="DYB_ID" />
+    <OrderBy>DYB_ID</OrderBy>
+    <Column name="DYB_KNTXT" type="plain" />
+  </Table>
+  <Table name="STICHWORT">
+    <Key name="ST_WORT_ID" />
+    <OrderBy>ST_WORT_ID</OrderBy>
+    <Column name="STICHWORT" type="plain" />
+  </Table>
+  <Table name="PERS_FUNKTIONS">
+    <Key name="FUNK_ID" />
+    <OrderBy>FUNK_ID</OrderBy>
+    <Column name="FUNKL_LBZG" type="plain" />
+  </Table>
+  <Table name="PLANINTERVENTION">
+    <Key name="INTERVENT_ID" />
+    <OrderBy>INTERVENT_ID</OrderBy>
+    <Column name="INTERVENTION" type="plain" />
+  </Table>
+  <Table name="RTS_KEYS">
+    <Key name="RTS_ID" />
+    <OrderBy>RTS_ID</OrderBy>
+    <Column name="RTS_TEXT" type="plain">
+      <Where><![CDATA[where RTS_DN like '#11.#1.#2.#1.%']]></Where>
+    </Column>
+    <Column name="RTS_TEXT" type="plain">
+      <Where><![CDATA[where RTS_DN like '#11.#1.#2.#2.%']]></Where>
+    </Column>
+    <Column name="RTS_TEXT" type="plain">
+      <Where><![CDATA[where RTS_DN like '#11.#1.#2.#3.%']]></Where>
+    </Column>
+    <Column name="RTS_TEXT" type="plain">
+      <Where><![CDATA[where RTS_DN like '#11.#1.#2.#4.%']]></Where>
+    </Column>
+    <Column name="RTS_TEXT" type="plain">
+      <Where><![CDATA[ where EDITOR > 0 ]]></Where>
+    </Column>
+  </Table>
+  <Table name="RTS_KEY_VAL">
+    <Key name="RTS_ID" />
+    <Key name="KEY_IDENT" />
+    <OrderBy>RTS_ID,KEY_IDENT</OrderBy>
+    <Explain><![CDATA[(select rts_text from rts_keys where rts_id = t.rts_id)]]></Explain>
+    <Column name="KEY_TEXT" type="plain">
+      <Where><![CDATA[where t.RTS_ID in (select rts_id from rts_keys where RTS_DN like '#11.#1.#2.#2.%')]]></Where>
+    </Column>
+    <Column name="KEY_TEXT" type="plain">
+      <Where><![CDATA[where t.RTS_ID in (select rts_id from rts_keys where RTS_DN like '#11.#1.#2.#3.%')]]></Where>
+    </Column>
+    <Column name="KEY_TEXT" type="plain">
+      <Where><![CDATA[where t.RTS_ID in (select rts_id from rts_keys where RTS_DN like '#11.#1.#2.#4.%')]]></Where>
+    </Column>
+    <Column name="KEY_TEXT" type="plain">
+      <Where><![CDATA[ where t.RTS_ID in (select rts_id from rts_keys where EDITOR > 0) ]]></Where>
+    </Column>
+  </Table>
+  <Table name="GR_INTERVATTR">
+    <Key name="ID" />
+    <OrderBy>ID</OrderBy>
+    <Column name="kurzbez" type="plain" />
+    <Column name="bezeichnung" type="plain" />
+  </Table>
+  <Table name="SCALEN">
+    <Key name="scalen_ID" />
+    <OrderBy>scalen_ID</OrderBy>
+    <Column name="bezeichg" type="plain" />
+  </Table>
+  <Table name="GR_SCALEN_ELEMENT">
+    <Key name="scalen_ID" />
+    <Key name="group_id" />
+    <Key name="str" />
+    <OrderBy>scalen_ID,group_id,str</OrderBy>
+    <Explain><![CDATA[(select first 1 (trim(s.BEZEICHG) || ', ' || trim(sg.TEXT)) from GR_SCALEN_GROUP sg join SCALEN s on (sg.SCALEN_ID = s.SCALEN_ID) where s.scalen_ID = t.scalen_ID and sg.group_id = t.group_id)]]></Explain>
+    <Column name="text" type="plain" />
+  </Table>
+  <Table name="GR_SCALEN_GROUP">
+    <Key name="scalen_ID" />
+    <Key name="section_id" />
+    <Key name="group_id" />
+    <Key name="sorting" />
+    <OrderBy>scalen_ID,section_id,group_id,sorting</OrderBy>
+    <Explain><![CDATA[(select first 1 (trim(s.BEZEICHG) || ', ' || trim(ss.NAME)) from GR_SCALEN_SECTION ss join SCALEN s on (ss.SCALEN_ID = s.SCALEN_ID) where s.scalen_ID = t.scalen_ID and ss.section_id = t.section_id)]]></Explain>
+    <Column name="text" type="plain" />
+  </Table>
+  <Table name="GR_SCALEN_SECTION">
+    <Key name="scalen_ID" />
+    <Key name="section_id" />
+    <OrderBy>scalen_ID,section_id</OrderBy>
+    <Explain><![CDATA[(select bezeichg from SCALEN where scalen_id = t.scalen_id)]]></Explain>
+    <Column name="text" type="plain" />
+  </Table>
+  <Table name="SPEZIALISIERUNG">
+    <Key name="id" />
+    <OrderBy>id</OrderBy>
+    <Column name="description" type="plain" />
+  </Table>
+  <Table name="GR_BERICHTART">
+    <Key name="berartid" />
+    <OrderBy>berartid</OrderBy>
+    <Column name="bez_kurz" type="plain" />
+    <Column name="bezeichnung" type="plain" />
+  </Table>
+  <Table name="WEITERBUILDUNG">
+    <Key name="id" />
+    <OrderBy>id</OrderBy>
+    <Column name="description" type="plain" />
+  </Table>
+  <Table name="PFLGMITB">
+    <Key name="PFLGMIT_beridx" />
+    <OrderBy>PFLGMIT_beridx</OrderBy>
+    <Column name="PFLGMIT_ber" type="plain" />
+  </Table>
+  <Table name="SCAL_EINST">
+    <Key name="scalen_id" />
+    <Key name="einstuf_id" />
+    <OrderBy>scalen_id,einstuf_id</OrderBy>
+    <Explain><![CDATA[(select bezeichg from SCALEN where scalen_id = t.scalen_id)]]></Explain>
+    <Column name="text" type="plain" />
+  </Table>
+  <Table name="GR_SYSLISTTEXT">
+    <Key name="id" />
+    <OrderBy>id</OrderBy>
+    <Column name="TEXT" type="plain" />
+  </Table>
+  <Table name="AUFGABEN_TEXTE">
+    <Key name="gruppe" />
+    <Key name="wert" />
+    <OrderBy>gruppe,wert</OrderBy>
+    <Column name="TEXT" type="plain" />
+  </Table>
+  <Table name="GR_REPORTS">
+    <Key name="report_id" />
+    <OrderBy>report_id</OrderBy>
+    <Column name="reportname" type="plain" />
+  </Table>
+  <Table name="GR_REPORTCOL">
+    <Key name="id" />
+    <OrderBy>id</OrderBy>
+    <Column name="COLNAME" type="plain" />
+  </Table>
+  <Table name="MEDI_EINHEIT">
+    <Key name="id" />
+    <OrderBy>id</OrderBy>
+    <Column name="bzg" type="plain" />
+    <Column name="bmp_name" type="plain" />
+  </Table>
+  <Table name="GR_PL_INT_WERT">
+    <Key name="intervent_id" />
+    <Key name="v_alter" />
+    <OrderBy>intervent_id,v_alter</OrderBy>
+    <Column name="l_limit_inf" type="plain" />
+    <Column name="u_limit_inf" type="plain" />
+  </Table>
+  <Table name="ENP_CLUSTER">
+    <Key name="cluster_id" />
+    <OrderBy>cluster_id</OrderBy>
+    <Column name="text" type="plain">
+      <Where><![CDATA[ where type_id = 9 ]]></Where>
+    </Column>
+  </Table>
+  <Table name="DOKUMENTATION_ART">
+    <Key name="ID" />
+    <OrderBy>ID</OrderBy>
+    <Column name="BEZEICHNUNG" type="plain" />
+  </Table>
+  <Table name="GEBIET">
+    <Key name="GEBIET_ID" />
+    <OrderBy>GEBIET_ID</OrderBy>
+    <Column name="GEBIET" type="plain" />
+  </Table>
+  <Table name="MEDI_DAF_MED">
+    <Key name="KEY_DAF" />
+    <OrderBy>KEY_DAF</OrderBy>
+    <Column name="NAME" type="plain" />
+    <Column name="bmp_shortname" type="plain" />
+  </Table>
+  <Table name="PFLGMITLEL">
+    <Key name="PFLGMIT_IDX" />
+    <OrderBy>PFLGMIT_IDX</OrderBy>
+    <Column name="PFLGMIT_BEZ" type="plain" />
+  </Table>
+</TranslationDefinition>
