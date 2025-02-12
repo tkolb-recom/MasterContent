@@ -176,6 +176,7 @@ function processTables {
     Write-Host
 }
 
+$totalTime=[system.diagnostics.stopwatch]::StartNew();
 
 $utfsw = New-Object UtfStringWriter
 $xmlWriter = New-Object System.XML.XMLTextWriter($utfsw)
@@ -198,3 +199,7 @@ $xmlWriter.Close()
 
 $enc = [System.Text.Encoding]::GetEncoding("UTF-8");
 [System.IO.File]::WriteAllText("$PSScriptRoot/TranslationContent.xml", $utfsw.toString(), $enc)
+
+
+$totalTime.Stop();
+write-host "Export took $($totalTime.Elapsed.TotalSeconds) seconds"
