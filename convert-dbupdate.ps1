@@ -5,8 +5,7 @@
 
 if (-not ([System.Management.Automation.PSTypeName]'UtfStringWriter').Type)
 {
-    Add-Type -Language CSharp 
-@"
+    Add-Type -TypeDefinition @"
 public sealed class UtfStringWriter : System.IO.StringWriter
 {
     public override System.Text.Encoding Encoding { get { return System.Text.Encoding.GetEncoding("UTF-8"); } }
