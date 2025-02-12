@@ -15,7 +15,7 @@ public sealed class UtfStringWriter : System.IO.StringWriter
 $global:connectionString = "Data Source=vidab-2;Database=MasterContent;User ID=sa;Password=dev_sa;"
 
 
-function getKeys {
+function getPrimaryKeys {
     param(
         [string] $tableName
     )
@@ -85,12 +85,13 @@ function processTables {
     {
         $tableName = $table.name
 
-        $keys = getKeys $tableName
+        $keys = $table.SelectNodes('Key') | ForEach-Object{$_.name}
+        $primaryKeys = getPrimaryKeys $tableName
+
+        Write-Host "Table: $tableName ($keys)"
 
         if ($keys.Count -gt 0)
         {
-            Write-Host "Table: $tableName ($keys)"
-
             $xmlWriter.WriteStartElement('Table')
             $xmlWriter.WriteAttributeString('name', $tableName)
 
@@ -98,6 +99,9 @@ function processTables {
             {
                 $xmlWriter.WriteStartElement("KeyDef")
                 $xmlWriter.WriteAttributeString('name', $key)
+
+                $xmlWriter.WriteAttributeString('primaryKey', ($primaryKeys -contains $key))
+
                 $xmlWriter.WriteEndElement()    #KeyDef
             }
 
@@ -113,11 +117,6 @@ function processTables {
                 $type = $colTypes[$name]
                 $xmlWriter.WriteAttributeString('name', $name)
                 $xmlWriter.WriteAttributeString('type', $type)
-
-                if (($keys | ForEach-Object{$name -eq $_}) -contains $true)
-                {
-                    $xmlWriter.WriteAttributeString('key', "true")
-                }
 
                 $xmlWriter.WriteEndElement()    #Column
 
@@ -164,6 +163,11 @@ function processTables {
             }
 
             $xmlWriter.WriteEndElement() #Table
+        } 
+
+        if ($primaryKeys.Count -gt 0)
+        {
+            Write-Host "----- ERROR: NO PK -----"
         }
 
         Write-Host
