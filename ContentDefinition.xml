@@ -21,9 +21,6 @@
 	</Group>
 	<!--Content definitions for group 'basics'-->
 	<Group name="basics">
-		<Table name="AUFGABEN_TEXTE">
-			<Order>GRUPPE,WERT</Order>
-		</Table>
 		<Table name="DIAGNOSE">
 			<Order>DIAGNOSE_ID</Order>
 		</Table>
@@ -32,12 +29,6 @@
 		</Table>
 		<Table name="DOKUMENTATION_ART">
 			<Order>ID</Order>
-		</Table>
-		<Table name="DYNBAUM">
-			<Order>DYB_ID</Order>
-		</Table>
-		<Table name="DYN_V_K">
-			<Order>DYB_ID,DYB_KIND,DYN_REIHNF</Order>
 		</Table>
 		<Table name="ENP_CLUSTER">
 			<Order>CLUSTER_ID</Order>
@@ -57,39 +48,6 @@
 		<Table name="ENP_REL_PKMSINT">
 			<Order>enp_id,pkms_id,type_id,mass_min,mass_opt,pkms_type,enp_freq,valid_for_year</Order>
 		</Table>
-		<Table name="ERSETZE_IN">
-			<Order>ersatz_id</Order>
-		</Table>
-		<Table name="FELD_DEF">
-			<Order>feld_id</Order>
-		</Table>
-		<Table name="GRUPPE">
-			<Order>group_id</Order>
-		</Table>
-		<Table name="GR_BER_BAUSTEIN">
-			<Order>id</Order>
-			<Where><![CDATA[ id < 0 ]]></Where>
-		</Table>
-		<Table name="GR_BER_THEMEN">
-			<Order>id</Order>
-			<Where><![CDATA[ id < 0 ]]></Where>
-		</Table>
-		<Table name="GR_BER_THEMEN_BAUST_V_K">
-			<Order>themen_id,baustein_id</Order>
-			<Where><![CDATA[ themen_id < 0  and BAUSTEIN_ID < 0 ]]></Where>
-		</Table>
-		<Table name="GR_BER_THEMEN_STAT_V_K">
-			<Order>themen_id,station_id</Order>
-			<Where><![CDATA[ themen_id < 0 and STATION_ID < 0  ]]></Where>
-		</Table>
-		<Table name="GR_THEMEN_BAUST_STAT_V_K">
-			<Order>themen_id,baustein_id,station_id</Order>
-			<Where><![CDATA[ themen_id < 0 and BAUSTEIN_ID < 0 and station_id < 0 ]]></Where>
-		</Table>
-		<Table name="GR_BER_FUNK">
-			<Order>funk_id,berart_id,station_id</Order>
-			<Where><![CDATA[ station_id = 0 ]]></Where>
-		</Table>
 		<Table name="GR_BERICHTART">
 			<Order>berartid</Order>
 			<Where><![CDATA[ Predefined = 1 ]]></Where>
@@ -102,28 +60,6 @@
 		</Table>
 		<Table name="GR_CODE_ATTR_AKTIV">
 			<Order>code,attr_id</Order>
-		</Table>
-		<Table name="GR_ICON">
-			<Order>id</Order>
-		</Table>
-		<Table name="GR_ICON_SORTING">
-			<Order>id,station</Order>
-			<Where><![CDATA[ station = 0 ]]></Where>
-		</Table>
-		<Table name="GR_LOK_BASIS">
-			<Order>lok_art_id,lok_nr</Order>
-		</Table>
-		<Table name="GR_LOK_BILDER">
-			<Order>lok_bild_id,lok_art_id,lok_geschlecht,lok_bildart,lok_type_id</Order>
-		</Table>
-		<Table name="GR_LOK_BILDSET">
-			<Order>lok_bild_id</Order>
-		</Table>
-		<Table name="GR_MEDI_IMPORT">
-			<Order>id</Order>
-		</Table>
-		<Table name="GR_MEDI_IMP_F_MAPING">
-			<Order>quell_bzg,form_id</Order>
 		</Table>
 		<Table name="GR_PFLPFADE">
 			<Order>PFAD_id</Order>
@@ -178,15 +114,11 @@
 		<Table name="ID_ART">
 			<Order>id_art_id</Order>
 		</Table>
-		<Table name="L3_CODE" />
 		<Table name="LABEL">
 			<Order>lid</Order>
 		</Table>
 		<Table name="LEP_VAR">
 			<Order>var_nr</Order>
-		</Table>
-		<Table name="LOGGING_CODES">
-			<Order>code</Order>
 		</Table>
 		<Table name="MEDI_APPLART">
 			<Order>id</Order>
@@ -351,6 +283,18 @@
 		<Table name="GR_INTERVENTION2PROTOCOL">
 			<Order />
 		</Table>
+		<Table name="DSP_DOCUMENTTYPECODE">
+			<Order>id</Order>
+		</Table>
+		<Table name="DSP_DOCUMENTCLASSCODE">
+			<Order>id</Order>
+		</Table>
+		<Table name="DSP_FACILITYTYPECODE">
+			<Order>id</Order>
+		</Table>
+		<Table name="DSP_PRACTICESETTINGCODE">
+			<Order>id</Order>
+		</Table>
 	</Group>
 	<!--Content definitions for group 'icd10'-->
 	<Group name="icd10">
@@ -464,9 +408,6 @@
 	</Group>
 	<!--Content definitions for group 'medi'-->
 	<Group name="medi">
-		<Table name="MEDI_INTERACTION">
-			<Order>key_int</Order>
-		</Table>
 		<Table name="MEDI_MEDIKAMENT">
 			<Order>id</Order>
 			<Where><![CDATA[ id < 1000000 ]]></Where>
@@ -482,11 +423,7 @@
 		<Table name="WIRKSTOFF">
 			<Order>key_sto</Order>
 			<Where><![CDATA[ key_sto > -1000000 ]]></Where>
-			<ignore>delete_date</ignore>
 			<alternateDelete><![CDATA[ not_inuse = 1 ]]></alternateDelete>
-		</Table>
-		<Table name="WIRK_INTERACTION">
-			<Order>key_int,key_sto</Order>
 		</Table>
 		<Table name="MEDI_MEDICATION2KEYWORDS">
 			<Order>id</Order>

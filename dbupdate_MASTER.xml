@@ -1,215 +1,201 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
 	document	  : dbupdate.xml
-	description	  : database update script file
+	description	: database update script file
 	copyright	  : (c) 2011, RECOM GmbH & Co. KG, Germany
 	author		  : oschuler
 -->
 
 <dbupdate>
-    <!-- update database content -->
-     <content dbversion="369">
+  <!-- update database content -->
+  <content dbversion="369">
          
-      <table>AUFGABEN_TEXTE<order>GRUPPE,WERT</order></table>
-      <table>CONTEXT<limit><![CDATA[ id < 1000000 ]]></limit><order>ID</order><group>enp</group></table>
-      <table>CONTEXT_DLGKURZ<limit><![CDATA[ context < 1000000 ]]></limit><order>context,dlgkurz,dlg_art</order><group>enp</group></table>
-      <table>CONTEXT_prob<limit><![CDATA[ context < 1000000 ]]></limit><order>context,problem_id</order><group>enp</group></table>
-      <table>CONTEXT_mas<limit><![CDATA[ context < 1000000 AND context != 10 ]]></limit><order>context,massn_id</order><group>enp</group></table>
-      <table>CONTEXT_ziel<limit><![CDATA[ context < 1000000 ]]></limit><order>context,ziel_id</order><group>enp</group></table>
-      <table>CONTEXT_ueb<limit><![CDATA[ context < 1000000 ]]></limit><order>context,ueb_id</order><group>enp</group></table>
-      <table>DIAGNOSE<order>DIAGNOSE_ID</order></table>
-      <table>DIAGN_P_M<order>diagnose_id,PROBLEM_id,MASSNAHME_ID,dlgteil_id</order></table>
-      <table>DLGBOX<order>DLG_ID</order><group>enp</group></table>
-      <table>DLGTEILMAS<order>DLGBOX_ID,DLGBOXIN_ID,MASSNAHME_ID</order><group>enp</group></table>
-      <table>DLGTEIL_KURZ<order>dlgteil_id</order><group>enp</group></table>
-      <table>DLG_KURZ<order>DLG_KURZ_ID</order><group>enp</group></table>
-      <table>DOKUMENTATION_ART<order>ID</order></table>
-      <table>DYNBAUM<order>DYB_ID</order></table>
-      <table>DYN_V_K<order>DYB_ID,DYB_KIND,DYN_REIHNF</order></table>
-      <table>ENP_CLUSTER<order>CLUSTER_ID</order></table> <!-- before #40386 belonged to group enp -->
-      <table>ENP_CLUSTER_TYPE<order>TYPE_ID</order><group>enp</group></table> 
-      <table>ENP_CLUSTER_REL<order>CLUSTER_ID,TYPE_ID,REF_ID</order><group>enp</group></table>
-      <table>ENP_PKMS_DLGKURZ<order>pkms_id,dlgkurz_id,enp_id,pkms_type,valid_for_year</order></table>
-      <table>ENP_PKMS_KENNZEICHEN<order>ENP_ID, PKMS_ID, KENN_ID, VALID_FOR_YEAR, OPT_NR, OPT_GRP_NR</order></table>
-      <table>ENP_PKMS_URSACHEN<order>ENP_ID, PKMS_ID, URS_ID, VALID_FOR_YEAR, OPT_NR, OPT_GRP_NR</order></table>
-      <table>ENP_REL_PKMSDIA<order>ENP_ID, PKMS_ID, KEN_OPT, KEN_MIN, URS_OPT, URS_MIN, ZIELE_ID, TYPE_ID, VALID_FOR_YEAR, ENP_OPT_NR ,ENP_OPT_GRP_NR, ENP_OPT_MIN_SEL, dia_skalen, skalen_faktor</order></table>
-      <table>ENP_REL_PKMSINT<order>enp_id,pkms_id,type_id,mass_min,mass_opt,pkms_type,enp_freq,valid_for_year</order></table>
-      <table>ERSETZE_IN<order>ersatz_id</order></table>
-      <table>ERSETZE_STRINGS<order>ersatz_id</order><group>enp</group></table> <!-- hier möglicherweise noch gruppe ? -->
-      <!--table>EXT_MAP<order>RTS_ID</order></table-->
-      <table>FELD_DEF<order>feld_id</order></table> <!-- hier möglicherweise noch form_id ? laut oliver scheinbar datenmüll -->
-      <table>GEBIET<order>gebiet_id</order><group>enp</group></table>
-      <table>GRUPPE<order>group_id</order></table>
-      <table>EVALUATION_SCALE<order>eval_id</order><group>enp</group></table>
+    <table>CONTEXT<limit><![CDATA[ id < 1000000 ]]></limit><order>ID</order><group>enp</group></table>
+    <table>CONTEXT_DLGKURZ<limit><![CDATA[ context < 1000000 ]]></limit><order>context,dlgkurz,dlg_art</order><group>enp</group></table>
+    <table>CONTEXT_prob<limit><![CDATA[ context < 1000000 ]]></limit><order>context,problem_id</order><group>enp</group></table>
+    <table>CONTEXT_mas<limit><![CDATA[ context < 1000000 AND context != 10 ]]></limit><order>context,massn_id</order><group>enp</group></table>
+    <table>CONTEXT_ziel<limit><![CDATA[ context < 1000000 ]]></limit><order>context,ziel_id</order><group>enp</group></table>
+    <table>CONTEXT_ueb<limit><![CDATA[ context < 1000000 ]]></limit><order>context,ueb_id</order><group>enp</group></table>
+    <table>DIAGNOSE<order>DIAGNOSE_ID</order></table>
+    <table>DIAGN_P_M<order>diagnose_id,PROBLEM_id,MASSNAHME_ID,dlgteil_id</order></table>
+    <table>DLGBOX<order>DLG_ID</order><group>enp</group></table>
+    <table>DLGTEILMAS<order>DLGBOX_ID,DLGBOXIN_ID,MASSNAHME_ID</order><group>enp</group></table>
+    <table>DLGTEIL_KURZ<order>dlgteil_id</order><group>enp</group></table>
+    <table>DLG_KURZ<order>DLG_KURZ_ID</order><group>enp</group></table>
+    <table>DOKUMENTATION_ART<order>ID</order></table>
+    <table>ENP_CLUSTER<order>CLUSTER_ID</order></table><!-- before #40386 belonged to group enp -->
+    <table>ENP_CLUSTER_TYPE<order>TYPE_ID</order><group>enp</group></table>
+    <table>ENP_CLUSTER_REL<order>CLUSTER_ID,TYPE_ID,REF_ID</order><group>enp</group></table>
+    <table>ENP_PKMS_DLGKURZ<order>pkms_id,dlgkurz_id,enp_id,pkms_type,valid_for_year</order></table>
+    <table>ENP_PKMS_KENNZEICHEN<order>ENP_ID, PKMS_ID, KENN_ID, VALID_FOR_YEAR, OPT_NR, OPT_GRP_NR</order></table>
+    <table>ENP_PKMS_URSACHEN<order>ENP_ID, PKMS_ID, URS_ID, VALID_FOR_YEAR, OPT_NR, OPT_GRP_NR</order></table>
+    <table>ENP_REL_PKMSDIA<order>ENP_ID, PKMS_ID, KEN_OPT, KEN_MIN, URS_OPT, URS_MIN, ZIELE_ID, TYPE_ID, VALID_FOR_YEAR, ENP_OPT_NR ,ENP_OPT_GRP_NR, ENP_OPT_MIN_SEL, dia_skalen, skalen_faktor</order></table>
+    <table>ENP_REL_PKMSINT<order>enp_id,pkms_id,type_id,mass_min,mass_opt,pkms_type,enp_freq,valid_for_year</order></table>
+    <table>ERSETZE_STRINGS<order>ersatz_id</order><group>enp</group></table><!-- hier möglicherweise noch gruppe ? -->
+    <!--table>EXT_MAP<order>RTS_ID</order></table-->
+    <table>GEBIET<order>gebiet_id</order><group>enp</group></table>
+    <table>EVALUATION_SCALE<order>eval_id</order><group>enp</group></table>
         
-      <table>gr_ber_baustein<limit><![CDATA[ id < 0 ]]></limit><order>id</order></table>
-      <table>gr_ber_themen<limit><![CDATA[ id < 0 ]]></limit><order>id</order></table>
-      <table>gr_ber_themen_baust_v_k<limit><![CDATA[ themen_id < 0  and BAUSTEIN_ID < 0 ]]></limit><order>themen_id,baustein_id</order></table>
-      <table>gr_ber_themen_stat_v_k<limit><![CDATA[ themen_id < 0 and STATION_ID < 0  ]]></limit><order>themen_id,station_id</order></table>
-      <table>gr_themen_baust_stat_v_k<limit><![CDATA[ themen_id < 0 and BAUSTEIN_ID < 0 and station_id < 0 ]]></limit><order>themen_id,baustein_id,station_id</order></table>
-      <table>GR_BER_FUNK<limit><![CDATA[ station_id = 0 ]]></limit><order>funk_id,berart_id,station_id</order></table>
-      <table>GR_BERICHTART<limit><![CDATA[ Predefined = 1 ]]></limit><order>berartid</order></table>
-      <table>GR_BERUFSGRUPPE<order>id</order></table>
-      <table>GR_CODE_ATTR<order>code,attr_id</order></table>
-      <table>GR_CODE_ATTR_Aktiv<order>code,attr_id</order></table>
-      <table>enp_pkms_faktoren<order>faktor, pkms_dia, enp_dia, kennz_id, urs_id, valid_for_year</order><group>pkms</group></table>
-      <table>GR_ICON<order>id</order></table>
-      <table>GR_ICON_SORTING<limit><![CDATA[ station = 0 ]]></limit><order>id,station</order></table>
-      <table>GR_LOK_BASIS<order>lok_art_id,lok_nr</order></table>
-      <table>GR_LOK_BILDER<order>lok_bild_id,lok_art_id,lok_geschlecht,lok_bildart,lok_type_id</order></table>
-      <table>GR_LOK_BILDSET<order>lok_bild_id</order></table>
-      <table>GR_MEDI_IMPORT<order>id</order></table> 
-      <table>GR_MEDI_IMP_F_MAPING<order>quell_bzg,form_id</order></table>
-      <table>GR_MDK_CODING<order>MDK_ID</order><group>enp</group></table>
-      <table>GR_PFLPFADE<order>PFAD_id</order></table>
-      <table>GR_REPORTS<order>report_id</order><ignore>is_Active</ignore></table>
-      <table>GR_REPORTCOL<order>id</order></table>
-      <table>SCALEN<order>scalen_id</order></table>
-      <table>GR_SCAL_PROB<order>scalen_id,group_id,str_id,prob_id</order></table>
-      <table>GR_SCALEN_SECTION<order>scalen_id,section_id</order></table>
-      <table>GR_SCALEN_GROUP<order>scalen_id,section_id,group_id,name</order></table>
-      <table>GR_SCALEN_ELEMENT<order>scalen_id,group_id,str</order></table>
-      <table>GR_SYNC_TBL<order>tbl_name</order></table>
-      <table>GR_SYSTEXT<order>text_id</order></table>
-      <table>GR_SYSLISTTEXT<order>id</order></table>
-      <table>GR_RO_NOC<order>RO_ID,NOC_ID</order></table> <!-- tabelle ist leer? ro_id + noc_id -->
-      <table>GR_WUNDART_V_K<order>wundart_id,kind_wundart_id</order></table>
-      <table>GR_WUNDATTR_V_K<order>attr_id,beh_id</order></table>
-      <table>GR_WUNDBEH_V_K<order>beh_id,wundart_id</order></table>
-      <table>GR_WUNDEINSCH_V_K<order>einsch_id,wundart_id</order></table>
-      <table>ID</table> <!-- tabelle ist leer? id_id + id_art_id -->
-      <table>ID_ART<order>id_art_id</order></table> <!-- überhaupt notwendig? -->
+    <table>GR_BERICHTART<limit><![CDATA[ Predefined = 1 ]]></limit><order>berartid</order></table>
+    <table>GR_BERUFSGRUPPE<order>id</order></table>
+    <table>GR_CODE_ATTR<order>code,attr_id</order></table>
+    <table>GR_CODE_ATTR_Aktiv<order>code,attr_id</order></table>
+    <table>enp_pkms_faktoren<order>faktor, pkms_dia, enp_dia, kennz_id, urs_id, valid_for_year</order><group>pkms</group></table>
+    <table>GR_MDK_CODING<order>MDK_ID</order><group>enp</group></table>
+    <table>GR_PFLPFADE<order>PFAD_id</order></table>
+    <table>GR_REPORTS<order>report_id</order><ignore>is_Active</ignore></table>
+    <table>GR_REPORTCOL<order>id</order></table>
+    <table>SCALEN<order>scalen_id</order></table>
+    <table>GR_SCAL_PROB<order>scalen_id,group_id,str_id,prob_id</order></table>
+    <table>GR_SCALEN_SECTION<order>scalen_id,section_id</order></table>
+    <table>GR_SCALEN_GROUP<order>scalen_id,section_id,group_id,name</order></table>
+    <table>GR_SCALEN_ELEMENT<order>scalen_id,group_id,str</order></table>
+    <table>GR_SYNC_TBL<order>tbl_name</order></table>
+    <table>GR_SYSTEXT<order>text_id</order></table>
+    <table>GR_SYSLISTTEXT<order>id</order></table>
+    <table>GR_RO_NOC<order>RO_ID,NOC_ID</order></table><!-- tabelle ist leer? ro_id + noc_id -->
+    <table>GR_WUNDART_V_K<order>wundart_id,kind_wundart_id</order></table>
+    <table>GR_WUNDATTR_V_K<order>attr_id,beh_id</order></table>
+    <table>GR_WUNDBEH_V_K<order>beh_id,wundart_id</order></table>
+    <table>GR_WUNDEINSCH_V_K<order>einsch_id,wundart_id</order></table>
+    <table>ID</table><!-- tabelle ist leer? id_id + id_art_id -->
+    <table>ID_ART<order>id_art_id</order></table><!-- überhaupt notwendig? -->
 
 
-      <table>ICD10_GRUPPEN<order>grvon,grbis,kapnr,vers</order><group>icd10</group></table>
-      <table>ICD10_KAPITEL<order>kapnr,vers</order><group>icd10</group></table>
-      <table>ICD10_KODES<order>code,vers</order><group>icd10</group></table>
+    <table>ICD10_GRUPPEN<order>grvon,grbis,kapnr,vers</order><group>icd10</group></table>
+    <table>ICD10_KAPITEL<order>kapnr,vers</order><group>icd10</group></table>
+    <table>ICD10_KODES<order>code,vers</order><group>icd10</group></table>
          
 
-      <table>L3_CODE</table><!-- puh, keine ahnung -->
-      <table>LABEL<order>lid</order></table><!-- keinen inhalt? -->
-      <table>LEP_VAR<order>var_nr</order></table>
-      <table>LITERATUR_VERZ<order>lit_id</order><group>enp</group></table>
-      <table>LOGGING_CODES<order>code</order></table> <!-- was ist den das für eine tabelle? -->
-      <table>MASSNAHM<limit><![CDATA[ massnahme_id < 1000000000 ]]></limit><order>massnahme_id</order><group>enp</group></table>
-      <table>MAS_ZIEL<limit><![CDATA[ massnahme_id < 1000000000 ]]></limit><order>massnahme_id,ziel_id</order><group>enp</group></table>
-      <table>MEDI_APPLART<order>id</order></table>
-      <table>MEDI_DAF_MED<order>key_daf</order></table>
-      <table>APO_FORMCODE_MAPPING<order>APO_KEY</order></table> <!-- Depends on MEDI_DAF_MED -->
-      <table>MEDI_EINHEIT<order>id</order></table>
-      <table>APO_UNITS_MAPPING<order>APO_KEY</order></table> <!-- Depends on MEDI_EINHEIT -->
-      <table>MEDI_FORM<order>id</order></table>
-      <table>MEDI_FORM_APPLART<order>formid,artid</order></table>
-      <table>MICROSTD_MASS<limit><![CDATA[ MICRO_ID < 1000000 ]]></limit><order>massnahme_id,micro_id,kunden_art</order><group>enp</group></table>
-      <table>MICRO_STD<limit><![CDATA[ MICRO_ID < 1000000 ]]></limit><order>micro_id</order><group>enp</group></table>
-      <table>MICROSTD<limit><![CDATA[ micro_kind != 2 ]]></limit><order>micro_id</order><group>enp</group></table>
-      <table>microstd_intervent<limit><![CDATA[ micro_id not in (select micro_id from microstd where micro_kind = 2) ]]></limit><order>id</order><group>enp</group></table>
-      <table>OPT_PKMSENPINT<order>opt_id,enp_id,pkms_id,valid_for_year</order></table>
+    <table>LABEL<order>lid</order></table><!-- keinen inhalt? -->
+    <table>LEP_VAR<order>var_nr</order></table>
+    <table>LITERATUR_VERZ<order>lit_id</order><group>enp</group></table>
+    <table>MASSNAHM<limit><![CDATA[ massnahme_id < 1000000000 ]]></limit><order>massnahme_id</order><group>enp</group></table>
+    <table>MAS_ZIEL<limit><![CDATA[ massnahme_id < 1000000000 ]]></limit><order>massnahme_id,ziel_id</order><group>enp</group></table>
+    <table>MEDI_APPLART<order>id</order></table>
+    <table>MEDI_DAF_MED<order>key_daf</order></table>
+    <table>APO_FORMCODE_MAPPING<order>APO_KEY</order></table><!-- Depends on MEDI_DAF_MED -->
+    <table>MEDI_EINHEIT<order>id</order></table>
+    <table>APO_UNITS_MAPPING<order>APO_KEY</order></table><!-- Depends on MEDI_EINHEIT -->
+    <table>MEDI_FORM<order>id</order></table>
+    <table>MEDI_FORM_APPLART<order>formid,artid</order></table>
+    <table>MICROSTD_MASS<limit><![CDATA[ MICRO_ID < 1000000 ]]></limit><order>massnahme_id,micro_id,kunden_art</order><group>enp</group></table>
+    <table>MICRO_STD<limit><![CDATA[ MICRO_ID < 1000000 ]]></limit><order>micro_id</order><group>enp</group></table>
+    <table>MICROSTD<limit><![CDATA[ micro_kind != 2 ]]></limit><order>micro_id</order><group>enp</group></table>
+    <table>microstd_intervent<limit><![CDATA[ micro_id not in (select micro_id from microstd where micro_kind = 2) ]]></limit><order>id</order><group>enp</group></table>
+    <table>OPT_PKMSENPINT<order>opt_id,enp_id,pkms_id,valid_for_year</order></table>
       
-      <!-- Planinterventionen -->
-      <table>PLANINTERVENTION<limit><![CDATA[ intervent_id < 1000000 or intervent_id in (9000001, 9000002, 9000003) ]]></limit><order>intervent_id</order></table>
-      <table>GR_INTERVATTR<limit><![CDATA[ version <> '4.19.4' or version is null]]></limit></table>
-      <table>gr_plinter_attr<limit><![CDATA[ version <> '4.19.4' or version is null]]></limit></table>
-      <table>GR_INTERVATTRAKTIV<limit><![CDATA[ version <> '4.19.4' or version is null]]></limit></table>
-      <table>GR_INTERVATTR_V_K<limit><![CDATA[ version <> '4.19.4' or version is null]]></limit></table>
-      <table>GR_PLANINTERVGROUP<order>id</order></table>
-      <table>GR_PLANINTERVGROUP_V_K<order>group_id,intervent_id</order></table>
-      <table>GR_PL_INT_WERT</table>
+    <!-- Planinterventionen -->
+    <table>PLANINTERVENTION<limit><![CDATA[ intervent_id < 1000000 or intervent_id in (9000001, 9000002, 9000003) ]]></limit><order>intervent_id</order></table>
+    <table>GR_INTERVATTR<limit><![CDATA[ version <> '4.19.4' or version is null]]></limit></table>
+    <table>gr_plinter_attr<limit><![CDATA[ version <> '4.19.4' or version is null]]></limit></table>
+    <table>GR_INTERVATTRAKTIV<limit><![CDATA[ version <> '4.19.4' or version is null]]></limit></table>
+    <table>GR_INTERVATTR_V_K<limit><![CDATA[ version <> '4.19.4' or version is null]]></limit></table>
+    <table>GR_PLANINTERVGROUP<order>id</order></table>
+    <table>GR_PLANINTERVGROUP_V_K<order>group_id,intervent_id</order></table>
+    <table>GR_PL_INT_WERT</table>
       
       
-      <table>PERS_FUNKTIONS<order>funk_id</order></table>
-      <table>PFLGMITB<order>pflgmit_beridx</order><group>pkms</group></table>
-      <table>PKMS_WUND_INT_MAP<group>pkms</group></table><!-- puh, keine ahnung -->       
-      <table>PKMS_WUND_MAP<group>pkms</group></table><!-- puh, keine ahnung -->       
-      <table>PKMS_DIA_REL_FKT<order>dia,fkt,pkms_type,valid_for_year</order><group>pkms</group></table> <!-- hier wirklich auch noch pkms_type? -->
-      <table>PKMS_DIAGNOSE<order>id,valid_for_year</order><group>pkms</group></table> 
-      <table>PKMS_ENP_DIA<order>pkms_id,num_opt,min_sel,valid_for_year</order><group>pkms</group></table>
-      <table>PKMS_ENP_INT<order>pkms_id,num_opt,min_sel,valid_for_year</order><group>pkms</group></table>
-      <table>PKMS_FAKTOR<order>id,valid_for_year</order><group>pkms</group></table> 
-      <table>PKMS_FILTER<order>id,id_filter,valid_for_year</order><group>pkms</group></table> <!-- id_filter? -->
-      <table>PKMS_FILTERTYP<order>id_filter</order><group>pkms</group></table> 
-      <table>PKMS_FKT_REL_INT<order>fkt_id,int_id,type_id,valid_for_year</order><group>pkms</group></table> 
-      <table>PKMS_INT_OPT<order>id,valid_for_year</order><group>pkms</group></table> 
-      <table>PKMS_INT_REL_SUB<order>I,SUB,type_id,valid_for_year</order><group>pkms</group></table> 
-      <table>PKMS_INTERVENTION<order>id,valid_for_year</order><group>pkms</group></table> 
-      <table>PKMS_NG<order>id,type_id,valid_for_year</order><group>pkms</group></table> 
-      <table>PKMS_NG_REL_DIA<order>ng,dia,type_id,valid_for_year</order><group>pkms</group></table> 
-      <table>PKMS_NG_REL_INT<order>dia,I,type_id,valid_for_year</order><group>pkms</group></table> 
-      <table>PKMS_OPS<order>id,valid_for_year</order><group>pkms</group></table> 
-      <table>PKMS_OPT_REL_INT<order>opt,i,valid_for_year</order><group>pkms</group></table> 
-      <table>PKMS_OPT_REL_SUB<order>opt,sub,valid_for_year</order><group>pkms</group></table> 
-      <table>PKMS_SUB_INT<order>id,valid_for_year</order><group>pkms</group></table>
-      <table>PKMS_TAB<order>id_art</order><group>pkms</group></table>
-      <table>PKMS_MOB_MAP<order>pkms_id,intervent_id,valid_for_year</order><group>pkms</group></table>
-      <table>pkms_InterventionTree<order>id</order><group>pkms</group></table>
-      <table>pkms_Category2RuleEdition<order>id</order><group>pkms</group></table>
-      <table>pkms_CauseTree<order>id</order><group>pkms</group></table> 
-      <table>PROBLEM<limit><![CDATA[ problem_id < 1000000000 ]]></limit><order>problem_id</order><group>enp</group></table>
-      <table>PROB_LITVERZ<order>problem_id,lit_id</order><group>enp</group></table>
-      <table>PROB_MAS<limit><![CDATA[ problem_id < 1000000000 ]]></limit><order>massnahme_id,problem_id</order><group>enp</group></table>
-      <table>PROB_ZIEL_HIDE<order>problem_id,ziel_id</order><group>enp</group></table>
-      <table>QUALIFIKATIONS<order>qual_id</order></table>
+    <table>PERS_FUNKTIONS<order>funk_id</order></table>
+    <table>PFLGMITB<order>pflgmit_beridx</order><group>pkms</group></table>
+    <table>PKMS_WUND_INT_MAP<group>pkms</group></table><!-- puh, keine ahnung -->
+    <table>PKMS_WUND_MAP<group>pkms</group></table><!-- puh, keine ahnung -->
+    <table>PKMS_DIA_REL_FKT<order>dia,fkt,pkms_type,valid_for_year</order><group>pkms</group></table><!-- hier wirklich auch noch pkms_type? -->
+    <table>PKMS_DIAGNOSE<order>id,valid_for_year</order><group>pkms</group></table>
+    <table>PKMS_ENP_DIA<order>pkms_id,num_opt,min_sel,valid_for_year</order><group>pkms</group></table>
+    <table>PKMS_ENP_INT<order>pkms_id,num_opt,min_sel,valid_for_year</order><group>pkms</group></table>
+    <table>PKMS_FAKTOR<order>id,valid_for_year</order><group>pkms</group></table>
+    <table>PKMS_FILTER<order>id,id_filter,valid_for_year</order><group>pkms</group></table><!-- id_filter? -->
+    <table>PKMS_FILTERTYP<order>id_filter</order><group>pkms</group></table>
+    <table>PKMS_FKT_REL_INT<order>fkt_id,int_id,type_id,valid_for_year</order><group>pkms</group></table>
+    <table>PKMS_INT_OPT<order>id,valid_for_year</order><group>pkms</group></table>
+    <table>PKMS_INT_REL_SUB<order>I,SUB,type_id,valid_for_year</order><group>pkms</group></table>
+    <table>PKMS_INTERVENTION<order>id,valid_for_year</order><group>pkms</group></table>
+    <table>PKMS_NG<order>id,type_id,valid_for_year</order><group>pkms</group></table>
+    <table>PKMS_NG_REL_DIA<order>ng,dia,type_id,valid_for_year</order><group>pkms</group></table>
+    <table>PKMS_NG_REL_INT<order>dia,I,type_id,valid_for_year</order><group>pkms</group></table>
+    <table>PKMS_OPS<order>id,valid_for_year</order><group>pkms</group></table>
+    <table>PKMS_OPT_REL_INT<order>opt,i,valid_for_year</order><group>pkms</group></table>
+    <table>PKMS_OPT_REL_SUB<order>opt,sub,valid_for_year</order><group>pkms</group></table>
+    <table>PKMS_SUB_INT<order>id,valid_for_year</order><group>pkms</group></table>
+    <table>PKMS_TAB<order>id_art</order><group>pkms</group></table>
+    <table>PKMS_MOB_MAP<order>pkms_id,intervent_id,valid_for_year</order><group>pkms</group></table>
+    <table>pkms_InterventionTree<order>id</order><group>pkms</group></table>
+    <table>pkms_Category2RuleEdition<order>id</order><group>pkms</group></table>
+    <table>pkms_CauseTree<order>id</order><group>pkms</group></table>
+    <table>PROBLEM<limit><![CDATA[ problem_id < 1000000000 ]]></limit><order>problem_id</order><group>enp</group></table>
+    <table>PROB_LITVERZ<order>problem_id,lit_id</order><group>enp</group></table>
+    <table>PROB_MAS<limit><![CDATA[ problem_id < 1000000000 ]]></limit><order>massnahme_id,problem_id</order><group>enp</group></table>
+    <table>PROB_ZIEL_HIDE<order>problem_id,ziel_id</order><group>enp</group></table>
+    <table>QUALIFIKATIONS<order>qual_id</order></table>
       
-      <!-- Rts Keys and dependent tables -->
-      <table>RTS_KEYS<order>rts_id</order></table>
-      <table>RTS_KEY_VAL<order>rts_id,key_ident</order></table>
-      <table>RTS_KEY_ANAM<limit><![CDATA[ Predefined = 1 ]]></limit><order>RTS_ID, formtype</order></table>
-      <table>RTS_PROB<order>rts_id,key_ident,problem_id</order><group>enp</group></table>
+    <!-- Rts Keys and dependent tables -->
+    <table>RTS_KEYS<order>rts_id</order></table>
+    <table>RTS_KEY_VAL<order>rts_id,key_ident</order></table>
+    <table>RTS_KEY_ANAM<limit><![CDATA[ Predefined = 1 ]]></limit><order>RTS_ID, formtype</order></table>
+    <table>RTS_PROB<order>rts_id,key_ident,problem_id</order><group>enp</group></table>
       
-      <table>SCAL_EINST<order>einstuf_id,scalen_id,section_id</order></table>
-      <table>SCAL_LEP<order>scalen_id,l_id</order></table>
-      <table>STATISTIC<limit><![CDATA[ stat_id < 1000 ]]></limit><order>stat_id</order></table> <!-- tabelle leer -->
-      <table>STICHWORT<order>st_wort_id</order><group>enp</group></table>
-      <table>STWORT_PROB <limit><![CDATA[ st_wort_id > 0 ]]></limit><order>st_wort_id,problem_id</order><group>enp</group></table>
-      <table>TASKHIERARCHY<order>id</order></table>
-      <table>THEMEN<order>thema_id</order><group>enp</group></table>
-      <table>UEBERSCH<order>ueberschrift_id</order><group>enp</group></table>
-      <table>UEB_PROB<limit><![CDATA[ problem_id < 1000000000 ]]></limit><order>ueberschrift_id,problem_id</order><group>enp</group></table>
-      <table>UEB_THEM<order>thema_id,ueb_id</order><group>enp</group></table>
-      <table>UNTERMAS<order>untermassnahme_id</order></table>
-      <table>USERS<order>user_id</order></table> <!-- was das für ne tabelle? -->
-      <!--table>XMLINST<order>idx</order></table>
+    <table>SCAL_EINST<order>einstuf_id,scalen_id,section_id</order></table>
+    <table>SCAL_LEP<order>scalen_id,l_id</order></table>
+    <table>STATISTIC<limit><![CDATA[ stat_id < 1000 ]]></limit><order>stat_id</order></table><!-- tabelle leer -->
+    <table>STICHWORT<order>st_wort_id</order><group>enp</group></table>
+    <table>STWORT_PROB<limit><![CDATA[ st_wort_id > 0 ]]></limit><order>st_wort_id,problem_id</order><group>enp</group></table>
+    <table>TASKHIERARCHY<order>id</order></table>
+    <table>THEMEN<order>thema_id</order><group>enp</group></table>
+    <table>UEBERSCH<order>ueberschrift_id</order><group>enp</group></table>
+    <table>UEB_PROB<limit><![CDATA[ problem_id < 1000000000 ]]></limit><order>ueberschrift_id,problem_id</order><group>enp</group></table>
+    <table>UEB_THEM<order>thema_id,ueb_id</order><group>enp</group></table>
+    <table>UNTERMAS<order>untermassnahme_id</order></table>
+    <table>USERS<order>user_id</order></table><!-- was das für ne tabelle? -->
+    <!--table>XMLINST<order>idx</order></table>
       <table>XMLVCS<order>CID,IID</order></table-->
-      <table>XPL_PROJ<limit><![CDATA[ xpl_id < 1000 ]]></limit><order>xpl_id</order></table><!-- ist leer? -->
-      <table>XPL_TMPL<limit><![CDATA[ xpl_id < 1000 ]]></limit><order>xpl_id</order></table><!-- ist leer? -->
-      <table>ZIEL<limit><![CDATA[ ziel_id < 1000000000 ]]></limit><order>ziel_id</order><group>enp</group></table>
-      <table>ZIEL_EVAL<order>ziel_id,eval_id</order><group>enp</group></table>
-      <table>ZUGRECHART<order>zureart_id</order></table>
-      <table>GR_MEDISORTINGGROUP<order>id</order></table>
-      <table>GR_MEDISORTINGGROUP2MEDIFORM<order>id</order></table>
-      <table>ZUGRECHTE<order>zurecht_id</order></table>
-      <table>WEITERBUILDUNG<order>id</order></table>
-      <table>SPEZIALISIERUNG<order>id</order></table>
-      <table>ETIKETTEN_ARTEN<order>etikett_id</order></table>
-      <table>RE_RULECATALOG<order>id</order><group>ruleengine</group></table>
-      <table>RE_RULEEDITION<order>id</order><group>ruleengine</group></table>
-      <table>RE_RULE<order>id</order><group>ruleengine</group></table>
-      <table>RE_RULE2RULEEDITION<order>id</order><group>ruleengine</group></table>
-      <table>WS_ENP2BODYAREA<order>id</order><group>ruleengine</group></table>
-      <table>gr_guifilter<limit><![CDATA[ remarkfordelete = 1 ]]></limit><order>id</order></table>
-      <table>gdb_doctype<limit><![CDATA[ predefinied = 1 ]]></limit><order>id</order></table>
-      <table>gr_PermissionGroup<limit><![CDATA[ grouptype = 1 ]]></limit><order>id</order></table>
-      <table>gr_Perm2PermGroup<limit><![CDATA[ permissiongroupid not in (select id from gr_PermissionGroup where grouptype in (2, 3)) ]]></limit><order>id</order></table>
-      <table>ANAMNESE_NOCHECK<order>RTS_DN</order></table>
-      <table>ws_syncinfo</table>
-      <table>gr_taskmanagementCategory<order>id</order></table>
-      <table>gr_taskmanagement2Intervention<order>id</order></table>
-      <table>gr_TaskmanagementCommand<order>id</order></table>
-      <table>gr_Taskmanagement2Command<order>id</order></table>
-      <table>GR_INTERVENTIONGROUP<order>id</order></table>
-      <table>GR_INTERVGROUP2INTERVENTION<order>id</order></table>
-      <table>ext_mappinggroup<limit><![CDATA[ Predefined  = 1 ]]></limit><order>id</order></table>
-      <table>ext_mapping<limit><![CDATA[ Predefined = 1 ]]></limit><order>id</order></table>
-      <table>GR_SUBTIMELINETYPE<order>id</order></table>
-      <table>GR_INTERVENTION2PROTOCOL<order></order></table>
-     </content>
+    <table>XPL_PROJ<limit><![CDATA[ xpl_id < 1000 ]]></limit><order>xpl_id</order></table><!-- ist leer? -->
+    <table>XPL_TMPL<limit><![CDATA[ xpl_id < 1000 ]]></limit><order>xpl_id</order></table><!-- ist leer? -->
+    <table>ZIEL<limit><![CDATA[ ziel_id < 1000000000 ]]></limit><order>ziel_id</order><group>enp</group></table>
+    <table>ZIEL_EVAL<order>ziel_id,eval_id</order><group>enp</group></table>
+    <table>ZUGRECHART<order>zureart_id</order></table>
+    <table>GR_MEDISORTINGGROUP<order>id</order></table>
+    <table>GR_MEDISORTINGGROUP2MEDIFORM<order>id</order></table>
+    <table>ZUGRECHTE<order>zurecht_id</order></table>
+    <table>WEITERBUILDUNG<order>id</order></table>
+    <table>SPEZIALISIERUNG<order>id</order></table>
+    <table>ETIKETTEN_ARTEN<order>etikett_id</order></table>
+    <table>RE_RULECATALOG<order>id</order><group>ruleengine</group></table>
+    <table>RE_RULEEDITION<order>id</order><group>ruleengine</group></table>
+    <table>RE_RULE<order>id</order><group>ruleengine</group></table>
+    <table>RE_RULE2RULEEDITION<order>id</order><group>ruleengine</group></table>
+    <table>WS_ENP2BODYAREA<order>id</order><group>ruleengine</group></table>
+    <table>gr_guifilter<limit><![CDATA[ remarkfordelete = 1 ]]></limit><order>id</order></table>
+    <table>gdb_doctype<limit><![CDATA[ predefinied = 1 ]]></limit><order>id</order></table>
+    <table>gr_PermissionGroup<limit><![CDATA[ grouptype = 1 ]]></limit><order>id</order></table>
+    <table>gr_Perm2PermGroup<limit><![CDATA[ permissiongroupid not in (select id from gr_PermissionGroup where grouptype in (2, 3)) ]]></limit><order>id</order></table>
+    <table>ANAMNESE_NOCHECK<order>RTS_DN</order></table>
+    <table>ws_syncinfo</table>
+    <table>gr_taskmanagementCategory<order>id</order></table>
+    <table>gr_taskmanagement2Intervention<order>id</order></table>
+    <table>gr_TaskmanagementCommand<order>id</order></table>
+    <table>gr_Taskmanagement2Command<order>id</order></table>
+    <table>GR_INTERVENTIONGROUP<order>id</order></table>
+    <table>GR_INTERVGROUP2INTERVENTION<order>id</order></table>
+    <table>ext_mappinggroup<limit><![CDATA[ Predefined  = 1 ]]></limit><order>id</order></table>
+    <table>ext_mapping<limit><![CDATA[ Predefined = 1 ]]></limit><order>id</order></table>
+    <table>GR_SUBTIMELINETYPE<order>id</order></table>
+    <table>GR_INTERVENTION2PROTOCOL<order/></table>
+
+    <!-- DSP / eSante -->
+    <table>dsp_DocumentTypeCode<order>id</order></table>
+    <table>dsp_DocumentClassCode<order>id</order></table>
+    <table>dsp_FacilityTypeCode<order>id</order></table>
+    <table>dsp_PracticeSettingCode<order>id</order></table>
+
+  </content>
 
 
-    <!-- execute external script files> -->
-    <externalscripts>
-      <file dbversion="347">persmessaging.dbu</file>      
-      <file dbversion="350">rtsIntervAttr.dbu</file>      
-      <file dbversion="356">rtsIntervAttr1.dbu</file>      
-    </externalscripts>
+  <!-- execute external script files> -->
+  <externalscripts>
+    <file dbversion="347">persmessaging.dbu</file>
+    <file dbversion="350">rtsIntervAttr.dbu</file>
+    <file dbversion="356">rtsIntervAttr1.dbu</file>
+  </externalscripts>
     
 </dbupdate>

@@ -2,11 +2,9 @@
 <dbupdate>
     <!-- update database content -->
      <content dbversion="369">
-         <table>MEDI_INTERACTION<order>key_int</order></table>
          <table>MEDI_MEDIKAMENT<limit><![CDATA[ id < 1000000 ]]></limit><order>id</order><ignore>is_hlist,changedate,importdate, PreferredDisplayStyle</ignore><alternateDelete><![CDATA[ in_active = 1 ]]></alternateDelete></table>
          <table>MEDI_WIRK<limit><![CDATA[ wirk > -1000000 AND medi < 1000000]]></limit><order>MEDI,WIRK,KOMPONENTENNR,ENTSPRICHTSTOFF,RANG</order><alternateDelete><![CDATA[ in_use = 0 ]]></alternateDelete><beforeSql><![CDATA[ delete from medi_wirk where (ENTSPRICHTSTOFF is null or rang is null) and medi < 0 ]]></beforeSql></table>
-         <table>WIRKSTOFF<limit><![CDATA[ key_sto > -1000000 ]]></limit><order>key_sto</order><ignore>delete_date</ignore><alternateDelete><![CDATA[ not_inuse = 1 ]]></alternateDelete></table>
-         <table>WIRK_INTERACTION<order>key_int,key_sto</order></table>
+         <table>WIRKSTOFF<limit><![CDATA[ key_sto > -1000000 ]]></limit><order>key_sto</order><alternateDelete><![CDATA[ not_inuse = 1 ]]></alternateDelete></table>
          <table>MEDI_MEDICATION2KEYWORDS<order>id</order></table>
          <table>MEDI_MEDICATIONINFORMATION<order>id</order></table>
          <table>MEDI_MEDICATION2INFORMATION<order>id</order></table>
