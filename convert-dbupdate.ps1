@@ -1,7 +1,8 @@
 # convert 'dbupdate_*.xml'
 # groups: enp icd10 ruleengine symx pkms
 # implicit: basics (w/o group)
-# future?: initial medi (w/o group)
+# future?: medi (w/o group)
+# obsolete: initial
 
 if (-not ([System.Management.Automation.PSTypeName]'UtfStringWriter').Type)
 {
@@ -97,12 +98,7 @@ function writeGroup {
     {
         $group = $table.Item('group');
         $groupName = $group.InnerText;
-        
-        if ($targetGroup -eq 'initial' -and $null -eq $group)   
-        {
-            writeTable $table $xmlWriter
-        }
-    
+
         if ($targetGroup -eq 'medi' -and $null -eq $group)   
         {
             writeTable $table $xmlWriter
@@ -121,9 +117,6 @@ function writeGroup {
     
     $xmlWriter.WriteEndElement() #Group
 }
-
-$source = [xml](get-content "$pwd\dbupdate_initial.xml")
-writeGroup $source "initial" $xmlWriter
 
 $source = [xml](get-content "$pwd\dbupdate_master.xml")
 writeGroup $source "basics" $xmlWriter

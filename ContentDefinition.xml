@@ -1,24 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentUpdate version="1">
-	<!--Content definitions for group 'initial'-->
-	<Group name="initial">
-		<Table name="XMLINST">
-			<Where><![CDATA[ idx in (select latest from xmlvcs) ]]></Where>
-		</Table>
-		<Table name="XMLVCS">
-			<Where><![CDATA[ latest in (select idx from xmlinst) ]]></Where>
-		</Table>
-		<Table name="INITIAL" />
-		<Table name="PFLGPERS">
-			<Where><![CDATA[ pflegepersonal = 1 ]]></Where>
-		</Table>
-		<Table name="STATION">
-			<Where><![CDATA[ station < 0 ]]></Where>
-		</Table>
-		<Table name="GR_PERS_STAT">
-			<Where><![CDATA[ ID = -1 ]]></Where>
-		</Table>
-	</Group>
 	<!--Content definitions for group 'basics'-->
 	<Group name="basics">
 		<Table name="DIAGNOSE">
@@ -33,21 +14,6 @@
 		<Table name="ENP_CLUSTER">
 			<Order>CLUSTER_ID</Order>
 		</Table>
-		<Table name="ENP_PKMS_DLGKURZ">
-			<Order>pkms_id,dlgkurz_id,enp_id,pkms_type,valid_for_year</Order>
-		</Table>
-		<Table name="ENP_PKMS_KENNZEICHEN">
-			<Order>ENP_ID, PKMS_ID, KENN_ID, VALID_FOR_YEAR, OPT_NR, OPT_GRP_NR</Order>
-		</Table>
-		<Table name="ENP_PKMS_URSACHEN">
-			<Order>ENP_ID, PKMS_ID, URS_ID, VALID_FOR_YEAR, OPT_NR, OPT_GRP_NR</Order>
-		</Table>
-		<Table name="ENP_REL_PKMSDIA">
-			<Order>ENP_ID, PKMS_ID, KEN_OPT, KEN_MIN, URS_OPT, URS_MIN, ZIELE_ID, TYPE_ID, VALID_FOR_YEAR, ENP_OPT_NR ,ENP_OPT_GRP_NR, ENP_OPT_MIN_SEL, dia_skalen, skalen_faktor</Order>
-		</Table>
-		<Table name="ENP_REL_PKMSINT">
-			<Order>enp_id,pkms_id,type_id,mass_min,mass_opt,pkms_type,enp_freq,valid_for_year</Order>
-		</Table>
 		<Table name="GR_BERICHTART">
 			<Order>berartid</Order>
 			<Where><![CDATA[ Predefined = 1 ]]></Where>
@@ -60,9 +26,6 @@
 		</Table>
 		<Table name="GR_CODE_ATTR_AKTIV">
 			<Order>code,attr_id</Order>
-		</Table>
-		<Table name="GR_PFLPFADE">
-			<Order>PFAD_id</Order>
 		</Table>
 		<Table name="GR_REPORTS">
 			<Order>report_id</Order>
@@ -86,17 +49,11 @@
 		<Table name="GR_SCALEN_ELEMENT">
 			<Order>scalen_id,group_id,str</Order>
 		</Table>
-		<Table name="GR_SYNC_TBL">
-			<Order>tbl_name</Order>
-		</Table>
 		<Table name="GR_SYSTEXT">
 			<Order>text_id</Order>
 		</Table>
 		<Table name="GR_SYSLISTTEXT">
 			<Order>id</Order>
-		</Table>
-		<Table name="GR_RO_NOC">
-			<Order>RO_ID,NOC_ID</Order>
 		</Table>
 		<Table name="GR_WUNDART_V_K">
 			<Order>wundart_id,kind_wundart_id</Order>
@@ -109,16 +66,6 @@
 		</Table>
 		<Table name="GR_WUNDEINSCH_V_K">
 			<Order>einsch_id,wundart_id</Order>
-		</Table>
-		<Table name="ID" />
-		<Table name="ID_ART">
-			<Order>id_art_id</Order>
-		</Table>
-		<Table name="LABEL">
-			<Order>lid</Order>
-		</Table>
-		<Table name="LEP_VAR">
-			<Order>var_nr</Order>
 		</Table>
 		<Table name="MEDI_APPLART">
 			<Order>id</Order>
@@ -140,9 +87,6 @@
 		</Table>
 		<Table name="MEDI_FORM_APPLART">
 			<Order>formid,artid</Order>
-		</Table>
-		<Table name="OPT_PKMSENPINT">
-			<Order>opt_id,enp_id,pkms_id,valid_for_year</Order>
 		</Table>
 		<Table name="PLANINTERVENTION">
 			<Order>intervent_id</Order>
@@ -186,41 +130,11 @@
 		<Table name="SCAL_EINST">
 			<Order>einstuf_id,scalen_id,section_id</Order>
 		</Table>
-		<Table name="SCAL_LEP">
-			<Order>scalen_id,l_id</Order>
-		</Table>
-		<Table name="STATISTIC">
-			<Order>stat_id</Order>
-			<Where><![CDATA[ stat_id < 1000 ]]></Where>
-		</Table>
-		<Table name="TASKHIERARCHY">
-			<Order>id</Order>
-		</Table>
-		<Table name="UNTERMAS">
-			<Order>untermassnahme_id</Order>
-		</Table>
-		<Table name="USERS">
-			<Order>user_id</Order>
-		</Table>
-		<Table name="XPL_PROJ">
-			<Order>xpl_id</Order>
-			<Where><![CDATA[ xpl_id < 1000 ]]></Where>
-		</Table>
-		<Table name="XPL_TMPL">
-			<Order>xpl_id</Order>
-			<Where><![CDATA[ xpl_id < 1000 ]]></Where>
-		</Table>
-		<Table name="ZUGRECHART">
-			<Order>zureart_id</Order>
-		</Table>
 		<Table name="GR_MEDISORTINGGROUP">
 			<Order>id</Order>
 		</Table>
 		<Table name="GR_MEDISORTINGGROUP2MEDIFORM">
 			<Order>id</Order>
-		</Table>
-		<Table name="ZUGRECHTE">
-			<Order>zurecht_id</Order>
 		</Table>
 		<Table name="WEITERBUILDUNG">
 			<Order>id</Order>
@@ -310,43 +224,20 @@
 	</Group>
 	<!--Content definitions for group 'pkms'-->
 	<Group name="pkms">
-		<Table name="ENP_PKMS_FAKTOREN">
-			<Order>faktor, pkms_dia, enp_dia, kennz_id, urs_id, valid_for_year</Order>
-		</Table>
 		<Table name="PFLGMITB">
 			<Order>pflgmit_beridx</Order>
 		</Table>
-		<Table name="PKMS_WUND_INT_MAP" />
-		<Table name="PKMS_WUND_MAP" />
 		<Table name="PKMS_DIA_REL_FKT">
 			<Order>dia,fkt,pkms_type,valid_for_year</Order>
 		</Table>
 		<Table name="PKMS_DIAGNOSE">
 			<Order>id,valid_for_year</Order>
 		</Table>
-		<Table name="PKMS_ENP_DIA">
-			<Order>pkms_id,num_opt,min_sel,valid_for_year</Order>
-		</Table>
-		<Table name="PKMS_ENP_INT">
-			<Order>pkms_id,num_opt,min_sel,valid_for_year</Order>
-		</Table>
 		<Table name="PKMS_FAKTOR">
 			<Order>id,valid_for_year</Order>
 		</Table>
-		<Table name="PKMS_FILTER">
-			<Order>id,id_filter,valid_for_year</Order>
-		</Table>
-		<Table name="PKMS_FILTERTYP">
-			<Order>id_filter</Order>
-		</Table>
-		<Table name="PKMS_FKT_REL_INT">
-			<Order>fkt_id,int_id,type_id,valid_for_year</Order>
-		</Table>
 		<Table name="PKMS_INT_OPT">
 			<Order>id,valid_for_year</Order>
-		</Table>
-		<Table name="PKMS_INT_REL_SUB">
-			<Order>I,SUB,type_id,valid_for_year</Order>
 		</Table>
 		<Table name="PKMS_INTERVENTION">
 			<Order>id,valid_for_year</Order>
@@ -363,17 +254,8 @@
 		<Table name="PKMS_OPS">
 			<Order>id,valid_for_year</Order>
 		</Table>
-		<Table name="PKMS_OPT_REL_INT">
-			<Order>opt,i,valid_for_year</Order>
-		</Table>
-		<Table name="PKMS_OPT_REL_SUB">
-			<Order>opt,sub,valid_for_year</Order>
-		</Table>
 		<Table name="PKMS_SUB_INT">
 			<Order>id,valid_for_year</Order>
-		</Table>
-		<Table name="PKMS_TAB">
-			<Order>id_art</Order>
 		</Table>
 		<Table name="PKMS_MOB_MAP">
 			<Order>pkms_id,intervent_id,valid_for_year</Order>
