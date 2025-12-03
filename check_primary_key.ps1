@@ -7,10 +7,13 @@ function checkKey {
     #Write-Host "Table: $tableName"
 
     $command =
-"SELECT COUNT(COLUMN_NAME)
-FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
-WHERE OBJECTPROPERTY(OBJECT_ID(CONSTRAINT_SCHEMA + '.' + QUOTENAME(CONSTRAINT_NAME)), 'IsPrimaryKey') = 1
-AND TABLE_NAME = '$tableName';"
+"SELECT COUNT(*) AS PrimaryKeyColumnCount
+FROM sys.key_constraints kc
+JOIN sys.index_columns ic 
+    ON kc.parent_object_id = ic.object_id
+   AND kc.unique_index_id = ic.index_id
+WHERE kc.type = 'PK'
+  AND OBJECT_NAME(kc.parent_object_id) = '$tableName';"
 
     $connectionString = "Data Source=vidab-2;Database=MasterContent;User ID=sa;Password=dev_sa;"
 
