@@ -2,12 +2,6 @@
 <ContentUpdate version="1">
 	<!--Content definitions for group 'basics'-->
 	<Group name="basics">
-		<Table name="DIAGNOSE">
-			<Order>DIAGNOSE_ID</Order>
-		</Table>
-		<Table name="DIAGN_P_M">
-			<Order>diagnose_id,PROBLEM_id,MASSNAHME_ID,dlgteil_id</Order>
-		</Table>
 		<Table name="DOKUMENTATION_ART">
 			<Order>ID</Order>
 		</Table>

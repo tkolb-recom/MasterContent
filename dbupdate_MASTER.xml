@@ -16,8 +16,8 @@
     <table>CONTEXT_mas<limit><![CDATA[ context < 1000000 AND context != 10 ]]></limit><order>context,massn_id</order><group>enp</group></table>
     <table>CONTEXT_ziel<limit><![CDATA[ context < 1000000 ]]></limit><order>context,ziel_id</order><group>enp</group></table>
     <table>CONTEXT_ueb<limit><![CDATA[ context < 1000000 ]]></limit><order>context,ueb_id</order><group>enp</group></table>
-    <table>DIAGNOSE<order>DIAGNOSE_ID</order></table>
-    <table>DIAGN_P_M<order>diagnose_id,PROBLEM_id,MASSNAHME_ID,dlgteil_id</order></table>
+    <table>DIAGNOSE<order>DIAGNOSE_ID</order><group>enp</group></table>
+    <table>DIAGN_P_M<order>diagnose_id,PROBLEM_id,MASSNAHME_ID,dlgteil_id</order><group>enp</group></table>
     <table>DLGBOX<order>DLG_ID</order><group>enp</group></table>
     <table>DLGTEILMAS<order>DLGBOX_ID,DLGBOXIN_ID,MASSNAHME_ID</order><group>enp</group></table>
     <table>DLGTEIL_KURZ<order>dlgteil_id</order><group>enp</group></table>
