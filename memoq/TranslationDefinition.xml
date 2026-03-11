@@ -299,4 +299,9 @@
     <OrderBy>PFLGMIT_IDX</OrderBy>
     <Column name="PFLGMIT_BEZ" type="plain" />
   </Table>
+  <Table name="GR_SUBTIMELINETYPE">
+    <Key name="ID" />
+    <OrderBy>ID</OrderBy>
+    <Column name="Name" type="plain" />
+  </Table>
 </TranslationDefinition>

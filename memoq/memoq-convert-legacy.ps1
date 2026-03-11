@@ -70,11 +70,13 @@ $themenIds = @(10000, 10051, 10052, 10053, 10054, 10070, 10055, 10057, 10058, 10
 $isActive = ' up.aktiv = 1 ';
 $isActiveUebThem = 'ut.is_active = 1 ';
 
+
 <#
 if($includeInactiveAndLux){
 #>
 	$themenIds += 9000
-<#	$isActive = ' 1=1 '
+<#
+	$isActive = ' 1=1 '
 	$isActiveUebThem = ' 1=1 '
 	
 	write-host 'including all for lux relevant items'
@@ -275,6 +277,18 @@ Invoke-MemoqExtractor -export:$toExport -language $language -file MEDI_DAF_MED  
 write-host "* Creating MemoQ import file for table PFLGMITLEL"
 Invoke-MemoqExtractor -export:$toExport -language $language -file PFLGMITLEL  -table PFLGMITLEL
 
+write-host "* Creating MemoQ import file for table GR_SUBTIMELINETYPE"
+Invoke-MemoqExtractor -export:$toExport -language $language -file GR_SUBTIMELINETYPE  -table GR_SUBTIMELINETYPE
+
 $totalTime.Stop();
 
 write-host "run took $($totalTime.Elapsed.TotalSeconds) seconds"
+
+<#
+if($import){
+    $execSqlFile = "$PSScriptRoot/ersetzen_sql_$language.txt"
+    if(Test-Path $execSqlFile){
+        Invoke-Sql $execSqlFile
+    }
+}
+#>

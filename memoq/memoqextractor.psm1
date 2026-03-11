@@ -109,6 +109,7 @@ $lookup = @{
     ERSETZE_STRINGS_ZUERSETZEN = New-Definition -table 'ERSETZE_STRINGS' -keys 'ERSATZ_ID' -field 'ZUERSETZEN'
     MICROSTD = New-Definition -table 'MICROSTD' -keys 'MICRO_ID' -field 'MICRO_DEF'
     PFLGMITLEL = New-Definition -table 'PFLGMITLEL' -keys 'PFLGMIT_IDX' -field 'PFLGMIT_BEZ'
+	GR_SUBTIMELINETYPE = New-Definition -table 'GR_SUBTIMELINETYPE' -keys 'ID' -field 'Name'
 };
 
 function Invoke-MemoqExtractor{
@@ -126,6 +127,26 @@ function Invoke-MemoqExtractor{
          [string]$language
     )
 
+<#
+    $exePath = "$PSScriptRoot\..\..\bin\Debug"
+    $mode = 'r' #write to database
+    if($export){
+        $mode = 'w' #extract from database
+    }
+
+    & "$PSScriptRoot\setenv.ps1"
+    if($export){
+        & "$PSScriptRoot\setenv_exportdb.ps1" $language
+    }else{
+        & "$PSScriptRoot\setenv_importdb.ps1" $language
+    }
+    
+    
+
+    $exePath = $env:INEXTR_BINPATH;
+    $datasource = $env:INEXTR_DATASOURCE;
+#>
+
     $filepath = '';
     $postfix = '';
     if(-not $export){
@@ -136,6 +157,7 @@ function Invoke-MemoqExtractor{
         $filepath = '';
         $postfix = "_$language";
     }
+
 
     $tableDef = $lookup[$table]
 
@@ -172,6 +194,8 @@ function Invoke-MemoqExtractor{
     if($LastExitCode -ne 0){
         throw "error in execution of i18ntool"
     }
+    
+    write-host ""
 #>  
 
     $xml = [xml](Get-Content -Path "$PSScriptRoot/TranslationDefinition.xml")
@@ -231,5 +255,25 @@ function Invoke-MemoqExtractor{
     write-host ""
 }
 
+<#
+function Invoke-Sql{
+    Param
+    (
+         [string]$file
+    )
+
+    $exePath = $env:INEXTR_BINPATH;
+    $datasource = $env:INEXTR_DATASOURCE;
+    
+    & "$exePath/tool_i18nextractor.exe" -d Recom.Core.Database.FirebirdDatabase -m 's' -c $datasource -o $file
+    if($LastExitCode -ne 0){
+        throw "error in execution of i18ntool"
+    }
+    
+    write-host ""
+
+}
+#>
 
 export-modulemember -function Invoke-MemoqExtractor
+#export-modulemember -function Invoke-Sql
