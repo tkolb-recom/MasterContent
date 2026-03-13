@@ -42,10 +42,12 @@ function New-Definition{
     if($typeOverride){
         $types = $typeOverride
     }
-    
+
+<#
     if(-not $orderby){
         $orderby = $keycols
     }
+#>
 
     $def = @{
         table = $table
@@ -59,24 +61,24 @@ function New-Definition{
 }
 
 $lookup = @{
-    PRO_DEF = New-Definition -table 'PROBLEM' -keys 'PROBLEM_ID' -field 'PROB_DEF_F' -rtf -explain "ueberschrift"
-    PRO_DEF_F = New-Definition -table 'PROBLEM' -keys 'PROBLEM_ID' -field 'PROB_DEF' -explain "ueberschrift"
-    DLG_CONT_EXPL = New-Definition -table 'DLGTEIL_KURZ' -keys 'DLGTEIL_ID' -field 'EXPLANATION' -explain 'inhalt'
+    #PRO_DEF = New-Definition -table 'PROBLEM' -keys 'PROBLEM_ID' -field 'PROB_DEF_F' -rtf -explain "ueberschrift"
+    #PRO_DEF_F = New-Definition -table 'PROBLEM' -keys 'PROBLEM_ID' -field 'PROB_DEF' -explain "ueberschrift"
+    #DLG_CONT_EXPL = New-Definition -table 'DLGTEIL_KURZ' -keys 'DLGTEIL_ID' -field 'EXPLANATION' -explain 'inhalt'
     ACTION_HINT = New-Definition -table 'MASSNAHM' -keys 'MASSNAHME_ID' -field 'HINWEISE' -rtf -explain 'TEXT'
     DLG_CONT_PROB = New-Definition -table 'DLGTEIL_KURZ' -keys 'DLGTEIL_ID' -field 'INHALT' -explain 'p.text'
     DLG_CONT_MASSN = New-Definition -table 'DLGTEIL_KURZ' -keys 'DLGTEIL_ID' -field 'INHALT' -explain 'm.text'
-    TARGET_TXT_0 = New-Definition -table 'ZIEL' -keys 'ZIEL_ID' -field 'TEXT' -rtf
-    ACTION = New-Definition -table 'MASSNAHM' -keys 'MASSNAHME_ID' -field 'TEXT' -rtf -explain "HINWEISE"
-    PRO_TEXT = New-Definition -table 'PROBLEM' -keys 'PROBLEM_ID' -field 'TEXT' -rtf
-    PRO_HEADER = New-Definition -table 'PROBLEM' -keys 'PROBLEM_ID' -field 'UEBERSCHRIFT' -olli
-    HEADER = New-Definition -table 'UEBERSCH' -keys 'UEBERSCHRIFT_ID' -field 'UEBERSCHRIFT' -olli
-    THEME = New-Definition -table 'THEMEN' -keys 'THEMA_ID' -field 'THEMA' -olli
+    #TARGET_TXT_0 = New-Definition -table 'ZIEL' -keys 'ZIEL_ID' -field 'TEXT' -rtf
+    #ACTION = New-Definition -table 'MASSNAHM' -keys 'MASSNAHME_ID' -field 'TEXT' -rtf -explain "HINWEISE"
+    #PRO_TEXT = New-Definition -table 'PROBLEM' -keys 'PROBLEM_ID' -field 'TEXT' -rtf
+    #PRO_HEADER = New-Definition -table 'PROBLEM' -keys 'PROBLEM_ID' -field 'UEBERSCHRIFT' -olli
+    #HEADER = New-Definition -table 'UEBERSCH' -keys 'UEBERSCHRIFT_ID' -field 'UEBERSCHRIFT' -olli
+    #THEME = New-Definition -table 'THEMEN' -keys 'THEMA_ID' -field 'THEMA' -olli
     GR_SYSTEXT = New-Definition -table 'GR_SYSTEXT' -keys 'TEXT_ID' -field 'TEXT'
     GR_SYSTEXTLONG = New-Definition -table 'GR_SYSTEXT' -keys 'TEXT_ID' -field 'LONGTEXT'
     MEDI_FORM = New-Definition -table 'MEDI_FORM' -keys 'ID' -field 'BEZEICHNUNG'
     MEDI_APPL_ART = New-Definition -table 'MEDI_APPLART' -keys 'ID' -field 'BEZEICHNUNG'
-    DYNBAUM = New-Definition -table 'DYNBAUM' -keys 'DYB_ID' -field 'DYB_KNTXT'
-    STICHWORT = New-Definition -table 'STICHWORT' -keys 'ST_WORT_ID' -field 'STICHWORT'
+    #DYNBAUM = New-Definition -table 'DYNBAUM' -keys 'DYB_ID' -field 'DYB_KNTXT'
+    #STICHWORT = New-Definition -table 'STICHWORT' -keys 'ST_WORT_ID' -field 'STICHWORT'
     PERS_FUNKTIONS = New-Definition -table 'PERS_FUNKTIONS' -keys 'FUNK_ID' -field 'FUNKL_LBZG'
     PLANINTERVENTION = New-Definition -table 'PLANINTERVENTION' -keys 'INTERVENT_ID' -field 'INTERVENTION'
     RTS_KEY = New-Definition -table 'RTS_KEYS' -keys 'RTS_ID' -field 'RTS_TEXT'
@@ -93,22 +95,22 @@ $lookup = @{
     PFLGMITB = New-Definition -table 'PFLGMITB' -keys 'PFLGMIT_beridx' -field 'PFLGMIT_ber'
     SCALEEINST = New-Definition -table 'scal_einst' -keys 'scalen_id','einstuf_id' -field 'text' -explain '(select bezeichg from SCALEN where scalen_id = t.scalen_id)'
     GR_SYSLISTTEXT = New-Definition -table 'GR_SYSLISTTEXT' -keys 'id' -field 'TEXT'
-    AUFGABEN_TEXTE = New-Definition -table 'aufgaben_texte' -keys 'gruppe','wert' -field 'TEXT'
+    #AUFGABEN_TEXTE = New-Definition -table 'aufgaben_texte' -keys 'gruppe','wert' -field 'TEXT'
     GR_REPORTS = New-Definition -table 'GR_REPORTS' -keys 'report_id' -field 'reportname'
     GR_REPORTCOL = New-Definition -table 'GR_REPORTCOL' -keys 'id' -field 'COLNAME'
     MEDI_EINHEIT = New-Definition -table 'Medi_Einheit' -keys 'id' -field 'bzg','bmp_name'
     GR_PL_INT_WERT = New-Definition -table 'GR_PL_INT_WERT' -keys 'intervent_id','v_alter' -field 'l_limit_inf','u_limit_inf'
     ENP_CLUSTER = New-Definition -table 'ENP_CLUSTER' -keys 'cluster_id' -field 'text'
     DOKUMENTATIONART = New-Definition -table 'DOKUMENTATION_ART' -keys 'ID' -field 'BEZEICHNUNG'
-    GEBIET = New-Definition -table 'GEBIET' -keys 'GEBIET_ID' -field 'GEBIET'
+    #GEBIET = New-Definition -table 'GEBIET' -keys 'GEBIET_ID' -field 'GEBIET'
     MEDI_DAF_MED = New-Definition -table 'MEDI_DAF_MED' -keys 'KEY_DAF' -field 'NAME','bmp_shortname'
     BERUFSGRUPPE = New-Definition -table 'GR_BERUFSGRUPPE' -keys 'ID' -field 'BEZEICHNUNG'
     INTERVENTIONGROUP = New-Definition -table 'GR_INTERVENTIONGROUP' -keys 'ID' -field 'GroupName'
-    MEDISORTINGGROUP = New-Definition -table 'GR_MEDISORTINGGROUP' -keys 'ID' -field 'GroupName'
-    ERSETZE_STRINGS_ERSATZ = New-Definition -table 'ERSETZE_STRINGS' -keys 'ERSATZ_ID' -field 'ERSATZ'
-    ERSETZE_STRINGS_ZUERSETZEN = New-Definition -table 'ERSETZE_STRINGS' -keys 'ERSATZ_ID' -field 'ZUERSETZEN'
-    MICROSTD = New-Definition -table 'MICROSTD' -keys 'MICRO_ID' -field 'MICRO_DEF'
-    PFLGMITLEL = New-Definition -table 'PFLGMITLEL' -keys 'PFLGMIT_IDX' -field 'PFLGMIT_BEZ'
+    MEDISORTINGGROUP = New-Definition -table 'GR_MEDISORTINGGROUP' -keys 'ID' -field 'GroupName'    
+    #ERSETZE_STRINGS_ERSATZ = New-Definition -table 'ERSETZE_STRINGS' -keys 'ERSATZ_ID' -field 'ERSATZ'       
+    #ERSETZE_STRINGS_ZUERSETZEN = New-Definition -table 'ERSETZE_STRINGS' -keys 'ERSATZ_ID' -field 'ZUERSETZEN'
+    #MICROSTD = New-Definition -table 'MICROSTD' -keys 'MICRO_ID' -field 'MICRO_DEF'
+    #PFLGMITLEL = New-Definition -table 'PFLGMITLEL' -keys 'PFLGMIT_IDX' -field 'PFLGMIT_BEZ'
 	GR_SUBTIMELINETYPE = New-Definition -table 'GR_SUBTIMELINETYPE' -keys 'ID' -field 'Name'
 };
 

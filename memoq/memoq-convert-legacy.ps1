@@ -99,72 +99,71 @@ write-host "* Creating MemoQ import file for table GR_MEDISORTINGGROUP"
 Invoke-MemoqExtractor -export:$toExport -language $language -file MEDISORTINGGROUP  -table MEDISORTINGGROUP
 
 write-host "* Creating MemoQ import file for table ERSETZE_STRINGS_ERSATZ"
-Invoke-MemoqExtractor -export:$toExport -language $language -file ERSETZE_STRINGS_ERSATZ  -table ERSETZE_STRINGS_ERSATZ
+#Invoke-MemoqExtractor -export:$toExport -language $language -file ERSETZE_STRINGS_ERSATZ  -table ERSETZE_STRINGS_ERSATZ
 
 write-host "* Creating MemoQ import file for table ERSETZE_STRINGS_ZUERSETZEN"
-Invoke-MemoqExtractor -export:$toExport -language $language -file ERSETZE_STRINGS_ZUERSETZEN  -table ERSETZE_STRINGS_ZUERSETZEN
+#Invoke-MemoqExtractor -export:$toExport -language $language -file ERSETZE_STRINGS_ZUERSETZEN  -table ERSETZE_STRINGS_ZUERSETZEN
 
 write-host "* Creating MemoQ import file for table MICROSTD"
-Invoke-MemoqExtractor -export:$toExport -language $language -file MICROSTD  -table MICROSTD
-
+#Invoke-MemoqExtractor -export:$toExport -language $language -file MICROSTD  -table MICROSTD
 
 write-host "* Creating MemoQ import file for table MASSNAHM.TEXT.T"
-Invoke-MemoqExtractor -export:$toExport -language $language -file TEXT.All -sql ", prob_mas pm, ueb_prob up, ueb_them u where t.massnahme_id = pm.massnahme_id and pm.problem_id = up.problem_id and $isActive and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport)"  -table ACTION
+#Invoke-MemoqExtractor -export:$toExport -language $language -file TEXT.All -sql ", prob_mas pm, ueb_prob up, ueb_them u where t.massnahme_id = pm.massnahme_id and pm.problem_id = up.problem_id and $isActive and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport)"  -table ACTION
 
 write-host "* Creating MemoQ import file for table PROBLEM.DEF_TEXT.T"
-Invoke-MemoqExtractor -export:$toExport -language $language -file DEF_TEXT.All -sql ", ueb_prob up, ueb_them u where t.problem_id = up.problem_id and $isActive and prob_def is not null and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport) and t.problem_id < 1000000"  -table PRO_DEF_F
+#Invoke-MemoqExtractor -export:$toExport -language $language -file DEF_TEXT.All -sql ", ueb_prob up, ueb_them u where t.problem_id = up.problem_id and $isActive and prob_def is not null and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport) and t.problem_id < 1000000"  -table PRO_DEF_F
 
 if($import){
     # Die spalte ist identisch mit PRO_DEF_F, nur ohne Formatierung, deshalb wird die selbe datei für den Import verwendet wie PRO_DEF_F
     write-host "* Using MemoQ import file for table PROBLEM.DEF_TEXT.T"
-    Invoke-MemoqExtractor -export:$toExport -language $language -file DEF_TEXT.All -sql ", ueb_prob up, ueb_them u where t.problem_id = up.problem_id and $isActive and prob_def is not null and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport)"  -table PRO_DEF
+    #Invoke-MemoqExtractor -export:$toExport -language $language -file DEF_TEXT.All -sql ", ueb_prob up, ueb_them u where t.problem_id = up.problem_id and $isActive and prob_def is not null and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport)"  -table PRO_DEF
 }
 
 write-host "* Creating MemoQ import file for table DLGTEIL_KURZ.INHALT.All_EXPL"
-Invoke-MemoqExtractor -export:$toExport -language $language -file INHALT.All_EXPL -sql " where t.dlgart_id in (1,2,3,4) and explanation is not null and exists (select 1 from dlg_kurz a where a.dlgteil_id = t.dlgteil_id)"  -table DLG_CONT_EXPL
+#Invoke-MemoqExtractor -export:$toExport -language $language -file INHALT.All_EXPL -sql " where t.dlgart_id in (1,2,3,4) and explanation is not null and exists (select 1 from dlg_kurz a where a.dlgteil_id = t.dlgteil_id)"  -table DLG_CONT_EXPL
 
 write-host "* Creating MemoQ import file for table MASSNAHM.TEXT.All_HINT"
-Invoke-MemoqExtractor -export:$toExport -language $language -file TEXT.All_HINT -sql ", prob_mas pm, ueb_prob up, ueb_them u where t.hinweise is not null and show_hinweis = 1 and t.massnahme_id = pm.massnahme_id and pm.problem_id = up.problem_id and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport)"  -table ACTION_HINT
+#Invoke-MemoqExtractor -export:$toExport -language $language -file TEXT.All_HINT -sql ", prob_mas pm, ueb_prob up, ueb_them u where t.hinweise is not null and show_hinweis = 1 and t.massnahme_id = pm.massnahme_id and pm.problem_id = up.problem_id and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport)"  -table ACTION_HINT
 
 write-host "* Creating MemoQ import file for table DLGTEIL_KURZ.INHALT.T-I"
-Invoke-MemoqExtractor -export:$toExport -language $language -file INHALT.All-I -sql ", dlg_kurz dk, massnahm m, prob_mas pm, ueb_prob up, ueb_them u where t.item_art <> 27 and t.dlgteil_id = dk.dlgteil_id  and  m.dlgbox_id = dk.dlg_id and m.massnahme_id = pm.massnahme_id and pm.problem_id = up.problem_id and $isActive and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport)"  -table DLG_CONT_MASSN
+#Invoke-MemoqExtractor -export:$toExport -language $language -file INHALT.All-I -sql ", dlg_kurz dk, massnahm m, prob_mas pm, ueb_prob up, ueb_them u where t.item_art <> 27 and t.dlgteil_id = dk.dlgteil_id  and  m.dlgbox_id = dk.dlg_id and m.massnahme_id = pm.massnahme_id and pm.problem_id = up.problem_id and $isActive and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport)"  -table DLG_CONT_MASSN
 
 write-host "* Creating MemoQ import file for table DLGTEIL_KURZ.INHALT.T-U"
-Invoke-MemoqExtractor -export:$toExport -language $language -file INHALT.All-U -sql ", dlg_kurz dk, problem p, ueb_prob up, ueb_them u where t.dlgteil_id = dk.dlgteil_id  and  p.u_dlg_id = dk.dlg_id and p.problem_id = up.problem_id and $isActive and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport) and t.DLGTEIL_ID < 1000000 "  -table DLG_CONT_PROB
+#Invoke-MemoqExtractor -export:$toExport -language $language -file INHALT.All-U -sql ", dlg_kurz dk, problem p, ueb_prob up, ueb_them u where t.dlgteil_id = dk.dlgteil_id  and  p.u_dlg_id = dk.dlg_id and p.problem_id = up.problem_id and $isActive and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport) and t.DLGTEIL_ID < 1000000 "  -table DLG_CONT_PROB
 
 write-host "* Creating MemoQ import file for table DLGTEIL_KURZ.INHALT.T-K"
-Invoke-MemoqExtractor -export:$toExport -language $language -file INHALT.All-K -sql ", dlg_kurz dk, problem p, ueb_prob up, ueb_them u where t.dlgteil_id = dk.dlgteil_id  and  p.k_dlg_id = dk.dlg_id and p.problem_id = up.problem_id and $isActive and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport) and t.DLGTEIL_ID < 1000000 "  -table DLG_CONT_PROB
+#Invoke-MemoqExtractor -export:$toExport -language $language -file INHALT.All-K -sql ", dlg_kurz dk, problem p, ueb_prob up, ueb_them u where t.dlgteil_id = dk.dlgteil_id  and  p.k_dlg_id = dk.dlg_id and p.problem_id = up.problem_id and $isActive and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport) and t.DLGTEIL_ID < 1000000 "  -table DLG_CONT_PROB
 
 write-host "* Creating MemoQ import file for table DLGTEIL_KURZ.INHALT.T-R"
-Invoke-MemoqExtractor -export:$toExport -language $language -file INHALT.All-R -sql ", dlg_kurz dk, problem p, ueb_prob up, ueb_them u where t.dlgteil_id = dk.dlgteil_id  and  p.r_dlg_id = dk.dlg_id and p.problem_id = up.problem_id and $isActive and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport) and t.DLGTEIL_ID < 1000000 "  -table DLG_CONT_PROB
+#Invoke-MemoqExtractor -export:$toExport -language $language -file INHALT.All-R -sql ", dlg_kurz dk, problem p, ueb_prob up, ueb_them u where t.dlgteil_id = dk.dlgteil_id  and  p.r_dlg_id = dk.dlg_id and p.problem_id = up.problem_id and $isActive and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport) and t.DLGTEIL_ID < 1000000 "  -table DLG_CONT_PROB
 
 write-host "* Creating MemoQ import file for table ZIEL.TEXT.T"
-Invoke-MemoqExtractor -export:$toExport -language $language -file TEXT.All -sql ", mas_ziel mz, prob_mas pm, ueb_prob up, ueb_them u where t.ziel_id = mz.ziel_id and mz.massnahme_id = pm.massnahme_id and pm.problem_id = up.problem_id and $isActive and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport)"  -table TARGET_TXT_0
+#Invoke-MemoqExtractor -export:$toExport -language $language -file TEXT.All -sql ", mas_ziel mz, prob_mas pm, ueb_prob up, ueb_them u where t.ziel_id = mz.ziel_id and mz.massnahme_id = pm.massnahme_id and pm.problem_id = up.problem_id and $isActive and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport)"  -table TARGET_TXT_0
 
 
 write-host "* Creating MemoQ import file for table PROBLEM.TEXT.T"
-Invoke-MemoqExtractor -export:$toExport -language $language -file TEXT.All -sql ", ueb_prob up, ueb_them u where t.problem_id = up.problem_id and $isActive and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport) and t.problem_id < 1000000"  -table PRO_TEXT
+#Invoke-MemoqExtractor -export:$toExport -language $language -file TEXT.All -sql ", ueb_prob up, ueb_them u where t.problem_id = up.problem_id and $isActive and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport) and t.problem_id < 1000000"  -table PRO_TEXT
 
 #if($import){
     # Die spalte ist identisch, nur mit anderer Formatierung, deshalb wird die selbe datei für den Import verwendet wie PRO_TEXT
     write-host "* Using MemoQ import file for table PROBLEM.UEBERSCHRIFT.T"
-    Invoke-MemoqExtractor -export:$toExport -language $language -file TEXT.All -sql ", ueb_prob up, ueb_them u where t.problem_id = up.problem_id and $isActive and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport)"  -table PRO_HEADER
+#    Invoke-MemoqExtractor -export:$toExport -language $language -file TEXT.All -sql ", ueb_prob up, ueb_them u where t.problem_id = up.problem_id and $isActive and up.ueberschrift_id = u.ueb_id  and u.thema_id in ($themenToExport)"  -table PRO_HEADER
 #} 
 
 write-host "* Creating MemoQ import file for table UEBERSCH.UEBERSCHRIFT.T"
-Invoke-MemoqExtractor -export:$toExport -language $language -file UEBERSCHRIFT.All -table HEADER
+#Invoke-MemoqExtractor -export:$toExport -language $language -file UEBERSCHRIFT.All -table HEADER
 
 write-host "* Creating MemoQ import file for table THEMEN.THEMA.G7"
-Invoke-MemoqExtractor -export:$toExport -language $language -file THEMA.G7 -sql "where gebiet_id = 7 "  -table THEME
+#Invoke-MemoqExtractor -export:$toExport -language $language -file THEMA.G7 -sql "where gebiet_id = 7 "  -table THEME
 
 write-host "* Creating MemoQ import file for table THEMEN.THEMA.G5"
-Invoke-MemoqExtractor -export:$toExport -language $language -file THEMA.G5 -sql "where gebiet_id = 5 and thema_id in ($themenToExport)"  -table THEME
+#Invoke-MemoqExtractor -export:$toExport -language $language -file THEMA.G5 -sql "where gebiet_id = 5 and thema_id in ($themenToExport)"  -table THEME
 
 write-host "* Creating MemoQ import file for table THEMEN.THEMA.All"
 #if($includeInactiveAndLux){
-	Invoke-MemoqExtractor -export:$toExport -language $language -file THEMA.All  -table THEME
+	#Invoke-MemoqExtractor -export:$toExport -language $language -file THEMA.All  -table THEME
 #} else {
-	Invoke-MemoqExtractor -export:$toExport -language $language -file THEMA.All -sql "where gebiet_id <> 0 and thema_id <> 9000 " -table THEME
+	#Invoke-MemoqExtractor -export:$toExport -language $language -file THEMA.All -sql "where gebiet_id <> 0 and thema_id <> 9000 " -table THEME
 #}
 
 write-host "* Creating MemoQ import file for table GR_SYSTEXT.TEXT"
@@ -179,9 +178,9 @@ Invoke-MemoqExtractor -export:$toExport -language $language -file TEXT  -table M
 write-host "* Creating MemoQ import file for table MEDI_APPLART.TEXT"
 Invoke-MemoqExtractor -export:$toExport -language $language -file TEXT  -table MEDI_APPL_ART
 write-host "* Creating MemoQ import file for table DYNBAUM.TEXT"
-Invoke-MemoqExtractor -export:$toExport -language $language -file TEXT  -table DYNBAUM
+#Invoke-MemoqExtractor -export:$toExport -language $language -file TEXT  -table DYNBAUM
 write-host "* Creating MemoQ import file for table STICHWORT.TEXT"
-Invoke-MemoqExtractor -export:$toExport -language $language -file TEXT  -table STICHWORT
+#Invoke-MemoqExtractor -export:$toExport -language $language -file TEXT  -table STICHWORT
 write-host "* Creating MemoQ import file for table PERS_FUNKTIONS.TEXT"
 Invoke-MemoqExtractor -export:$toExport -language $language -file TEXT  -table PERS_FUNKTIONS
 write-host "* Creating MemoQ import file for table PLANINTERVENTION.TEXT"
@@ -248,7 +247,7 @@ write-host "* Creating MemoQ import file for table GR_SYSLISTTEXT.TEXT"
 Invoke-MemoqExtractor -export:$toExport -language $language -file TEXT  -table GR_SYSLISTTEXT
 
 write-host "* Creating MemoQ import file for table AUFGABEN_TEXTE"
-Invoke-MemoqExtractor -export:$toExport -language $language -file AUFGABEN_TEXTE  -table AUFGABEN_TEXTE
+#Invoke-MemoqExtractor -export:$toExport -language $language -file AUFGABEN_TEXTE  -table AUFGABEN_TEXTE
 
 write-host "* Creating MemoQ import file for table GR_REPORTS"
 Invoke-MemoqExtractor -export:$toExport -language $language -file GR_REPORTS  -table GR_REPORTS
@@ -269,13 +268,13 @@ write-host "* Creating MemoQ import file for table DOKUMENTATION_ART"
 Invoke-MemoqExtractor -export:$toExport -language $language -file DOKUMENTATION_ART  -table DOKUMENTATIONART
 
 write-host "* Creating MemoQ import file for table GEBIET"
-Invoke-MemoqExtractor -export:$toExport -language $language -file GEBIET  -table GEBIET
+#Invoke-MemoqExtractor -export:$toExport -language $language -file GEBIET  -table GEBIET
 
 write-host "* Creating MemoQ import file for table MEDI_DAF_MED"
 Invoke-MemoqExtractor -export:$toExport -language $language -file MEDI_DAF_MED  -table MEDI_DAF_MED
 
 write-host "* Creating MemoQ import file for table PFLGMITLEL"
-Invoke-MemoqExtractor -export:$toExport -language $language -file PFLGMITLEL  -table PFLGMITLEL
+#Invoke-MemoqExtractor -export:$toExport -language $language -file PFLGMITLEL  -table PFLGMITLEL
 
 write-host "* Creating MemoQ import file for table GR_SUBTIMELINETYPE"
 Invoke-MemoqExtractor -export:$toExport -language $language -file GR_SUBTIMELINETYPE  -table GR_SUBTIMELINETYPE
